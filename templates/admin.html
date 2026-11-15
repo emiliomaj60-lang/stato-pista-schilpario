@@ -24,20 +24,19 @@ body{
 
 h1{
     text-align:center;
-    margin-bottom:25px;
 }
 
 .card{
     background:#1b263b;
-    padding:20px;
-    border-radius:12px;
-    margin-bottom:15px;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:12px;
 }
 
 label{
     display:block;
-    margin-bottom:6px;
     font-weight:bold;
+    margin-bottom:8px;
 }
 
 input,
@@ -46,37 +45,33 @@ textarea{
     width:100%;
     box-sizing:border-box;
     padding:12px;
-    font-size:18px;
     border:none;
     border-radius:8px;
+    font-size:18px;
 }
 
 textarea{
-    min-height:100px;
-    resize:vertical;
+    min-height:90px;
 }
 
 .btn{
     width:100%;
-    background:#2ecc71;
-    color:white;
+    padding:18px;
     border:none;
     border-radius:10px;
-    padding:18px;
     font-size:22px;
     font-weight:bold;
-    cursor:pointer;
-}
-
-.btn:hover{
     background:#27ae60;
+    color:white;
+    cursor:pointer;
 }
 
 .logout{
     display:block;
-    text-align:center;
     margin-top:20px;
+    text-align:center;
     color:white;
+    text-decoration:none;
 }
 
 </style>
@@ -92,121 +87,124 @@ textarea{
 <form method="post">
 
 <div class="card">
-
 <label>Stato pista</label>
 
 <select name="stato">
 
-<option {% if dati.stato=="APERTA" %}selected{% endif %}>
+<option value="APERTA"
+{% if dati.get('stato','APERTA') == 'APERTA' %}
+selected
+{% endif %}>
 APERTA
 </option>
 
-<option {% if dati.stato=="CHIUSA" %}selected{% endif %}>
+<option value="CHIUSA"
+{% if dati.get('stato','APERTA') == 'CHIUSA' %}
+selected
+{% endif %}>
 CHIUSA
 </option>
 
 </select>
-
 </div>
 
 <div class="card">
-
-<label>Km aperti</label>
-
-<input
-type="number"
-name="km"
-value="{{ dati.km }}">
-
-</div>
-
-<div class="card">
-
-<label>Temperatura aria (°C)</label>
-
-<input
-type="number"
-name="temperatura_aria"
-value="{{ dati.temperatura_aria }}">
-
-</div>
-
-<div class="card">
-
-<label>Temperatura neve (°C)</label>
-
-<input
-type="number"
-name="temperatura_neve"
-value="{{ dati.temperatura_neve }}">
-
-</div>
-
-<div class="card">
-
-<label>Ultima battitura</label>
-
-<input
-type="text"
-name="ultima_battitura"
-value="{{ dati.ultima_battitura }}">
-
-</div>
-
-<div class="card">
-
-<label>Note</label>
-
-<textarea
-name="note">{{ dati.note }}</textarea>
-
-</div>
-
-<div class="card">
-
 <label>Modalità</label>
 
 <select name="modalita">
 
 <option value="AUTO"
-{% if dati.modalita=="AUTO" %}selected{% endif %}>
+{% if dati.get('modalita','AUTO') == 'AUTO' %}
+selected
+{% endif %}>
 AUTO
 </option>
 
 <option value="FORZA_APERTA"
-{% if dati.modalita=="FORZA_APERTA" %}selected{% endif %}>
+{% if dati.get('modalita','AUTO') == 'FORZA_APERTA' %}
+selected
+{% endif %}>
 FORZA APERTA
 </option>
 
 <option value="FORZA_CHIUSA"
-{% if dati.modalita=="FORZA_CHIUSA" %}selected{% endif %}>
+{% if dati.get('modalita','AUTO') == 'FORZA_CHIUSA' %}
+selected
+{% endif %}>
 FORZA CHIUSA
 </option>
 
 </select>
-
 </div>
 
 <div class="card">
-
 <label>Ora apertura</label>
 
 <input
 type="time"
 name="ora_apertura"
-value="{{ dati.ora_apertura }}">
-
+value="{{ dati.get('ora_apertura','08:30') }}">
 </div>
 
 <div class="card">
-
 <label>Ora chiusura</label>
 
 <input
 type="time"
 name="ora_chiusura"
-value="{{ dati.ora_chiusura }}">
+value="{{ dati.get('ora_chiusura','17:00') }}">
+</div>
 
+<div class="card">
+<label>Km aperti</label>
+
+<input
+type="number"
+name="km"
+value="{{ dati.get('km','0') }}">
+</div>
+
+<div class="card">
+<label>Temperatura aria</label>
+
+<input
+type="number"
+name="temperatura_aria"
+value="{{ dati.get('temperatura_aria','0') }}">
+</div>
+
+<div class="card">
+<label>Temperatura neve</label>
+
+<input
+type="number"
+name="temperatura_neve"
+value="{{ dati.get('temperatura_neve','0') }}">
+</div>
+
+<div class="card">
+<label>Ora battitura</label>
+
+<input
+type="text"
+name="ultima_battitura"
+value="{{ dati.get('ultima_battitura','06:30') }}">
+</div>
+
+<div class="card">
+<label>Data battitura</label>
+
+<input
+type="text"
+name="data_battitura"
+value="{{ dati.get('data_battitura','') }}">
+</div>
+
+<div class="card">
+<label>Note</label>
+
+<textarea
+name="note">{{ dati.get('note','') }}</textarea>
 </div>
 
 <button class="btn" type="submit">
