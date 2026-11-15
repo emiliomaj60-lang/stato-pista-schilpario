@@ -162,6 +162,53 @@ name="note">{{ dati.note }}</textarea>
 
 </div>
 
+<div class="card">
+
+<label>Modalità</label>
+
+<select name="modalita">
+
+<option value="AUTO"
+{% if dati.modalita=="AUTO" %}selected{% endif %}>
+AUTO
+</option>
+
+<option value="FORZA_APERTA"
+{% if dati.modalita=="FORZA_APERTA" %}selected{% endif %}>
+FORZA APERTA
+</option>
+
+<option value="FORZA_CHIUSA"
+{% if dati.modalita=="FORZA_CHIUSA" %}selected{% endif %}>
+FORZA CHIUSA
+</option>
+
+</select>
+
+</div>
+
+<div class="card">
+
+<label>Ora apertura</label>
+
+<input
+type="time"
+name="ora_apertura"
+value="{{ dati.ora_apertura }}">
+
+</div>
+
+<div class="card">
+
+<label>Ora chiusura</label>
+
+<input
+type="time"
+name="ora_chiusura"
+value="{{ dati.ora_chiusura }}">
+
+</div>
+
 <button class="btn" type="submit">
 💾 SALVA
 </button>
