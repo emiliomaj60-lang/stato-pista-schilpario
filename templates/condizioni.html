@@ -9,22 +9,31 @@
 
 body{
     margin:0;
+    padding:0;
     background:#0d1b2a;
-    color:white;
     font-family:Arial,sans-serif;
+    overflow:hidden;
 }
 
 .container{
-    padding:12px;
+    width:630px;
+    height:180px;
+    display:flex;
+    gap:4px;
+    padding:4px;
+    box-sizing:border-box;
 }
 
 .stato{
+    width:130px;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
     text-align:center;
-    font-size:48px;
+    font-size:20px;
     font-weight:bold;
-    padding:18px;
-    border-radius:12px;
-    margin-bottom:12px;
+    border-radius:8px;
 }
 
 .aperta{
@@ -36,34 +45,28 @@ body{
 }
 
 .card{
+    flex:1;
     background:#1b263b;
-    border-left:8px solid #3498db;
-    border-radius:12px;
-    padding:12px;
-    margin-bottom:10px;
+    color:white;
+    border-radius:8px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
 }
 
 .label{
-    font-size:18px;
+    font-size:11px;
     color:#c7d3df;
 }
 
 .valore{
-    font-size:42px;
+    font-size:18px;
     font-weight:bold;
-    margin-top:4px;
 }
 
 .note{
-    background:#f39c12;
-    color:white;
-    border-radius:12px;
-    padding:12px;
-    margin-top:10px;
-}
-
-.note .valore{
-    font-size:26px;
+    display:none;
 }
 
 </style>
@@ -71,32 +74,31 @@ body{
 
 <body>
 
-<div class="barra">
+<div class="container">
 
-<div class="box stato">
-    ✅<br>
-    {{ dati.stato }}
-</div>
+    <div class="stato {% if dati.stato == 'APERTA' %}aperta{% else %}chiusa{% endif %}">
+        {{ dati.stato }}
+    </div>
 
-<div class="box">
-    🚜<br>
-    {{ dati.km }} km
-</div>
+    <div class="card">
+        <div class="label">KM</div>
+        <div class="valore">🚜 {{ dati.km }}</div>
+    </div>
 
-<div class="box">
-    🌡️<br>
-    {{ dati.temperatura_aria }}°
-</div>
+    <div class="card">
+        <div class="label">ARIA</div>
+        <div class="valore">🌡️ {{ dati.temperatura_aria }}°</div>
+    </div>
 
-<div class="box">
-    ❄️<br>
-    {{ dati.temperatura_neve }}°
-</div>
+    <div class="card">
+        <div class="label">NEVE</div>
+        <div class="valore">❄️ {{ dati.temperatura_neve }}°</div>
+    </div>
 
-<div class="box">
-    🕒<br>
-    {{ dati.ultima_battitura }}
-</div>
+    <div class="card">
+        <div class="label">BATTITURA</div>
+        <div class="valore">🕒 {{ dati.ultima_battitura }}</div>
+    </div>
 
 </div>
 
