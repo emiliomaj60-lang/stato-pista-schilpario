@@ -71,35 +71,31 @@ body{
 
 <body>
 
-<div class="container">
+<div class="barra">
 
-<div class="stato {% if dati.stato == 'APERTA' %}aperta{% else %}chiusa{% endif %}">
+<div class="box stato">
+    ✅<br>
     {{ dati.stato }}
 </div>
 
-<div class="card">
-    <div class="label">KM APERTI</div>
-    <div class="valore">🚜 {{ dati.km }}</div>
+<div class="box">
+    🚜<br>
+    {{ dati.km }} km
 </div>
 
-<div class="card">
-    <div class="label">TEMPERATURA ARIA</div>
-    <div class="valore">🌡️ {{ dati.temperatura_aria }}°</div>
+<div class="box">
+    🌡️<br>
+    {{ dati.temperatura_aria }}°
 </div>
 
-<div class="card">
-    <div class="label">TEMPERATURA NEVE</div>
-    <div class="valore">❄️ {{ dati.temperatura_neve }}°</div>
+<div class="box">
+    ❄️<br>
+    {{ dati.temperatura_neve }}°
 </div>
 
-<div class="card">
-    <div class="label">ULTIMA BATTITURA</div>
-    <div class="valore">🕒 {{ dati.ultima_battitura }}</div>
-</div>
-
-<div class="note">
-    <div class="label">NOTE</div>
-    <div class="valore">{{ dati.note }}</div>
+<div class="box">
+    🕒<br>
+    {{ dati.ultima_battitura }}
 </div>
 
 </div>
