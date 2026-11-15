@@ -59,6 +59,8 @@ def admin():
 
 @auth.verify_password
 def verify_password(username, password):
+    print("LOGIN:", username)
+
     if username in users and users[username] == password:
         return username
 
