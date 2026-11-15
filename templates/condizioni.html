@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+
+<style>
+
+body{
+    margin:0;
+    padding:0;
+    background:#0D1B2A;
+    color:white;
+    font-family:Arial,sans-serif;
+}
+
+.box{
+    padding:20px;
+}
+
+.titolo{
+    font-size:42px;
+    font-weight:bold;
+    text-align:center;
+    padding:15px;
+    border-radius:10px;
+    background:#2ecc71;
+}
+
+.riga{
+    margin-top:12px;
+    padding:12px;
+    font-size:28px;
+    background:#1b263b;
+    border-radius:8px;
+}
+
+</style>
+
+<meta http-equiv="refresh" content="30">
+
+</head>
+
+<body>
+
+<div class="box">
+
+<div class="titolo">
+{{ dati.stato }}
+</div>
+
+<div class="riga">
+🚜 {{ dati.km }} km aperti
+</div>
+
+<div class="riga">
+🌡️ Aria {{ dati.temperatura_aria }} °C
+</div>
+
+<div class="riga">
+❄️ Neve {{ dati.temperatura_neve }} °C
+</div>
+
+<div class="riga">
+🕒 Battitura {{ dati.ultima_battitura }}
+</div>
+
+</div>
+
+</body>
+</html>
