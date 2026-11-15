@@ -29,6 +29,27 @@ def salva_dati(dati):
     with open(FILE_DATI, "w", encoding="utf-8") as f:
         json.dump(dati, f, ensure_ascii=False, indent=4)
 
+def stato_effettivo(dati):
+
+    modalita = dati.get("modalita", "AUTO")
+
+    if modalita == "FORZA_APERTA":
+        return "APERTA"
+
+    if modalita == "FORZA_CHIUSA":
+        return "CHIUSA"
+
+    ora_apertura = dati.get("ora_apertura", "08:30")
+    ora_chiusura = dati.get("ora_chiusura", "17:00")
+
+    adesso = datetime.now().strftime("%H:%M")
+
+    if ora_apertura <= adesso <= ora_chiusura:
+        return "APERTA"
+
+    return "CHIUSA"
+
+
 
 @app.route("/")
 def home():
@@ -37,12 +58,15 @@ def home():
 
 @app.route("/condizioni")
 def condizioni():
+
     dati = carica_dati()
+
+    dati["stato"] = stato_effettivo(dati)
+
     return render_template(
         "condizioni.html",
         dati=dati
     )
-
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -89,6 +113,10 @@ def admin():
         dati["temperatura_neve"] = request.form["temperatura_neve"]
         dati["ultima_battitura"] = request.form["ultima_battitura"]
         dati["note"] = request.form["note"]
+        dati["modalita"] = request.form["modalita"]
+        dati["ora_apertura"] = request.form["ora_apertura"]
+        dati["ora_chiusura"] = request.form["ora_chiusura"]
+
 
         salva_dati(dati)
 
