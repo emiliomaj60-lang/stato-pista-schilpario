@@ -1,5 +1,12 @@
 import json
 from flask import Flask, render_template, request, redirect
+from flask_httpauth import HTTPBasicAuth
+
+auth = HTTPBasicAuth()
+
+users = {
+    "admin": "s" # ******** password **********
+}
 
 app = Flask(__name__)
 
@@ -27,6 +34,7 @@ def display():
     )
 
 @app.route("/admin", methods=["GET", "POST"])
+@auth.login_required
 def admin():
 
     dati = carica_dati()
@@ -48,6 +56,12 @@ def admin():
         "admin.html",
         dati=dati
     )
+
+@auth.verify_password
+def verify_password(username, password):
+    if username in users and users[username] == password:
+        return username
+
 import os
 
 if __name__ == "__main__":
