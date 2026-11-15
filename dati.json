@@ -1,9 +1,12 @@
 {
-    "stato": "APERTA",
+    "stato": "AUTO",
     "km": "12",
     "temperatura_aria": "-2",
     "temperatura_neve": "-5",
     "ultima_battitura": "06:30",
     "data_battitura": "13/11/2026",
+    "ora_apertura": "08:30",
+    "ora_chiusura": "17:00",
+    "modalita": "AUTO",
     "note": "Condizioni ottime"
 }
