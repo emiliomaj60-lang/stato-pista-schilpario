@@ -1,18 +1,17 @@
 import json
 import os
+from datetime import datetime
 
 from flask import (
     Flask,
     render_template,
     request,
     redirect,
-    session,
-    url_for
+    session
 )
 
 app = Flask(__name__)
 
-# Cambiala con una stringa lunga e segreta
 app.secret_key = "CENTRO_FONDO_SCHILPARIO_2026"
 
 FILE_DATI = "dati.json"
@@ -21,13 +20,34 @@ PASSWORD_ADMIN = "s"
 
 
 def carica_dati():
+
     with open(FILE_DATI, "r", encoding="utf-8") as f:
-        return json.load(f)
+        dati = json.load(f)
+
+    dati.setdefault("stato", "APERTA")
+    dati.setdefault("km", "0")
+    dati.setdefault("temperatura_aria", "0")
+    dati.setdefault("temperatura_neve", "0")
+    dati.setdefault("ultima_battitura", "")
+    dati.setdefault("data_battitura", "")
+    dati.setdefault("modalita", "AUTO")
+    dati.setdefault("ora_apertura", "08:30")
+    dati.setdefault("ora_chiusura", "17:00")
+    dati.setdefault("note", "")
+
+    return dati
 
 
 def salva_dati(dati):
+
     with open(FILE_DATI, "w", encoding="utf-8") as f:
-        json.dump(dati, f, ensure_ascii=False, indent=4)
+        json.dump(
+            dati,
+            f,
+            ensure_ascii=False,
+            indent=4
+        )
+
 
 def stato_effettivo(dati):
 
@@ -50,7 +70,6 @@ def stato_effettivo(dati):
     return "CHIUSA"
 
 
-
 @app.route("/")
 def home():
     return redirect("/condizioni")
@@ -68,6 +87,7 @@ def condizioni():
         dati=dati
     )
 
+
 @app.route("/login", methods=["GET", "POST"])
 def login():
 
@@ -78,7 +98,9 @@ def login():
         password = request.form.get("password", "")
 
         if password == PASSWORD_ADMIN:
+
             session["logged"] = True
+
             return redirect("/admin")
 
         errore = "Password errata"
@@ -107,16 +129,55 @@ def admin():
 
     if request.method == "POST":
 
-        dati["stato"] = request.form["stato"]
-        dati["km"] = request.form["km"]
-        dati["temperatura_aria"] = request.form["temperatura_aria"]
-        dati["temperatura_neve"] = request.form["temperatura_neve"]
-        dati["ultima_battitura"] = request.form["ultima_battitura"]
-        dati["note"] = request.form["note"]
-        dati["modalita"] = request.form["modalita"]
-        dati["ora_apertura"] = request.form["ora_apertura"]
-        dati["ora_chiusura"] = request.form["ora_chiusura"]
+        dati["stato"] = request.form.get(
+            "stato",
+            "APERTA"
+        )
 
+        dati["km"] = request.form.get(
+            "km",
+            "0"
+        )
+
+        dati["temperatura_aria"] = request.form.get(
+            "temperatura_aria",
+            "0"
+        )
+
+        dati["temperatura_neve"] = request.form.get(
+            "temperatura_neve",
+            "0"
+        )
+
+        dati["ultima_battitura"] = request.form.get(
+            "ultima_battitura",
+            ""
+        )
+
+        dati["data_battitura"] = request.form.get(
+            "data_battitura",
+            ""
+        )
+
+        dati["note"] = request.form.get(
+            "note",
+            ""
+        )
+
+        dati["modalita"] = request.form.get(
+            "modalita",
+            "AUTO"
+        )
+
+        dati["ora_apertura"] = request.form.get(
+            "ora_apertura",
+            "08:30"
+        )
+
+        dati["ora_chiusura"] = request.form.get(
+            "ora_chiusura",
+            "17:00"
+        )
 
         salva_dati(dati)
 
@@ -129,8 +190,14 @@ def admin():
 
 
 if __name__ == "__main__":
+
     app.run(
         host="0.0.0.0",
-        port=int(os.environ.get("PORT", 5000)),
+        port=int(
+            os.environ.get(
+                "PORT",
+                5000
+            )
+        ),
         debug=True
     )
