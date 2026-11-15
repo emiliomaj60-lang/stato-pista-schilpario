@@ -3,53 +3,67 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="refresh" content="30">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
 
 body{
     margin:0;
     background:#0d1b2a;
-    font-family:Arial, sans-serif;
     color:white;
+    font-family:Arial,sans-serif;
 }
 
 .container{
-    padding:15px;
+    padding:12px;
 }
 
 .stato{
     text-align:center;
-    font-size:42px;
+    font-size:48px;
     font-weight:bold;
-    padding:15px;
-    border-radius:10px;
-    margin-bottom:15px;
+    padding:18px;
+    border-radius:12px;
+    margin-bottom:12px;
 }
 
 .aperta{
-    background:#2ecc71;
+    background:#27ae60;
 }
 
 .chiusa{
-    background:#e74c3c;
+    background:#c0392b;
 }
 
 .card{
     background:#1b263b;
-    border-left:6px solid #3498db;
-    border-radius:10px;
-    padding:14px;
-    margin-bottom:12px;
+    border-left:8px solid #3498db;
+    border-radius:12px;
+    padding:12px;
+    margin-bottom:10px;
 }
 
 .label{
     font-size:18px;
-    color:#bfc9d9;
+    color:#c7d3df;
 }
 
 .valore{
-    font-size:32px;
+    font-size:42px;
     font-weight:bold;
+    margin-top:4px;
+}
+
+.note{
+    background:#f39c12;
+    color:white;
+    border-radius:12px;
+    padding:12px;
+    margin-top:10px;
+}
+
+.note .valore{
+    font-size:26px;
 }
 
 </style>
@@ -59,29 +73,34 @@ body{
 
 <div class="container">
 
-    <div class="stato {% if dati.stato == 'APERTA' %}aperta{% else %}chiusa{% endif %}">
-        {{ dati.stato }}
-    </div>
+<div class="stato {% if dati.stato == 'APERTA' %}aperta{% else %}chiusa{% endif %}">
+    {{ dati.stato }}
+</div>
 
-    <div class="card">
-        <div class="label">KM APERTI</div>
-        <div class="valore">🚜 {{ dati.km }}</div>
-    </div>
+<div class="card">
+    <div class="label">KM APERTI</div>
+    <div class="valore">🚜 {{ dati.km }}</div>
+</div>
 
-    <div class="card">
-        <div class="label">TEMPERATURA ARIA</div>
-        <div class="valore">🌡️ {{ dati.temperatura_aria }} °C</div>
-    </div>
+<div class="card">
+    <div class="label">TEMPERATURA ARIA</div>
+    <div class="valore">🌡️ {{ dati.temperatura_aria }}°</div>
+</div>
 
-    <div class="card">
-        <div class="label">TEMPERATURA NEVE</div>
-        <div class="valore">❄️ {{ dati.temperatura_neve }} °C</div>
-    </div>
+<div class="card">
+    <div class="label">TEMPERATURA NEVE</div>
+    <div class="valore">❄️ {{ dati.temperatura_neve }}°</div>
+</div>
 
-    <div class="card">
-        <div class="label">ULTIMA BATTITURA</div>
-        <div class="valore">🕒 {{ dati.ultima_battitura }}</div>
-    </div>
+<div class="card">
+    <div class="label">ULTIMA BATTITURA</div>
+    <div class="valore">🕒 {{ dati.ultima_battitura }}</div>
+</div>
+
+<div class="note">
+    <div class="label">NOTE</div>
+    <div class="valore">{{ dati.note }}</div>
+</div>
 
 </div>
 
