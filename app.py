@@ -62,6 +62,14 @@ def verify_password(username, password):
     if username in users and users[username] == password:
         return username
 
+@app.route("/condizioni")
+def condizioni():
+    dati = carica_dati()
+    return render_template(
+        "condizioni.html",
+        dati=dati
+    )
+
 import os
 
 if __name__ == "__main__":
