@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+
+<body>
+
+<h1>Gestione Stato Pista</h1>
+
+<form method="post">
+
+<p>Stato pista</p>
+
+<select name="stato">
+    <option>APERTA</option>
+    <option>CHIUSA</option>
+</select>
+
+<p>Km aperti</p>
+
+<input name="km" value="{{ dati.km }}">
+
+<p>Note</p>
+
+<input name="note" value="{{ dati.note }}">
+
+<p>Temperatura aria</p>
+<input name="temperatura_aria"
+       value="{{ dati.temperatura_aria }}">
+
+<p>Temperatura neve</p>
+<input name="temperatura_neve"
+       value="{{ dati.temperatura_neve }}">
+
+<p>Ultima battitura</p>
+<input name="ultima_battitura"
+       value="{{ dati.ultima_battitura }}">
+
+<br><br>
+
+<button type="submit">
+Salva
+</button>
+
+</form>
+
+</body>
+</html>
