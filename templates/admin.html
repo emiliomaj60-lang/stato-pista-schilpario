@@ -1,49 +1,178 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
+
 <head>
 <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Gestione Stato Pista</title>
+
+<style>
+
+body{
+    background:#0d1b2a;
+    font-family:Arial,sans-serif;
+    margin:0;
+    padding:20px;
+    color:white;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:25px;
+}
+
+.card{
+    background:#1b263b;
+    padding:20px;
+    border-radius:12px;
+    margin-bottom:15px;
+}
+
+label{
+    display:block;
+    margin-bottom:6px;
+    font-weight:bold;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    box-sizing:border-box;
+    padding:12px;
+    font-size:18px;
+    border:none;
+    border-radius:8px;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
+}
+
+.btn{
+    width:100%;
+    background:#2ecc71;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:18px;
+    font-size:22px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#27ae60;
+}
+
+.logout{
+    display:block;
+    text-align:center;
+    margin-top:20px;
+    color:white;
+}
+
+</style>
+
 </head>
 
 <body>
 
-<h1>Gestione Stato Pista</h1>
+<div class="container">
+
+<h1>🎿 Gestione Stato Pista</h1>
 
 <form method="post">
 
-<p>Stato pista</p>
+<div class="card">
+
+<label>Stato pista</label>
 
 <select name="stato">
-    <option>APERTA</option>
-    <option>CHIUSA</option>
+
+<option {% if dati.stato=="APERTA" %}selected{% endif %}>
+APERTA
+</option>
+
+<option {% if dati.stato=="CHIUSA" %}selected{% endif %}>
+CHIUSA
+</option>
+
 </select>
 
-<p>Km aperti</p>
+</div>
 
-<input name="km" value="{{ dati.km }}">
+<div class="card">
 
-<p>Note</p>
+<label>Km aperti</label>
 
-<input name="note" value="{{ dati.note }}">
+<input
+type="number"
+name="km"
+value="{{ dati.km }}">
 
-<p>Temperatura aria</p>
-<input name="temperatura_aria"
-       value="{{ dati.temperatura_aria }}">
+</div>
 
-<p>Temperatura neve</p>
-<input name="temperatura_neve"
-       value="{{ dati.temperatura_neve }}">
+<div class="card">
 
-<p>Ultima battitura</p>
-<input name="ultima_battitura"
-       value="{{ dati.ultima_battitura }}">
+<label>Temperatura aria (°C)</label>
 
-<br><br>
+<input
+type="number"
+name="temperatura_aria"
+value="{{ dati.temperatura_aria }}">
 
-<button type="submit">
-Salva
+</div>
+
+<div class="card">
+
+<label>Temperatura neve (°C)</label>
+
+<input
+type="number"
+name="temperatura_neve"
+value="{{ dati.temperatura_neve }}">
+
+</div>
+
+<div class="card">
+
+<label>Ultima battitura</label>
+
+<input
+type="text"
+name="ultima_battitura"
+value="{{ dati.ultima_battitura }}">
+
+</div>
+
+<div class="card">
+
+<label>Note</label>
+
+<textarea
+name="note">{{ dati.note }}</textarea>
+
+</div>
+
+<button class="btn" type="submit">
+💾 SALVA
 </button>
 
 </form>
+
+<a class="logout" href="/logout">
+🚪 Logout
+</a>
+
+</div>
 
 </body>
 </html>
