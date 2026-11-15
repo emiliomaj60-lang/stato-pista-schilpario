@@ -24,7 +24,6 @@ def carica_dati():
     with open(FILE_DATI, "r", encoding="utf-8") as f:
         dati = json.load(f)
 
-    dati.setdefault("stato", "APERTA")
     dati.setdefault("km", "0")
     dati.setdefault("temperatura_aria", "0")
     dati.setdefault("temperatura_neve", "0")
@@ -41,6 +40,7 @@ def carica_dati():
 def salva_dati(dati):
 
     with open(FILE_DATI, "w", encoding="utf-8") as f:
+
         json.dump(
             dati,
             f,
@@ -59,8 +59,15 @@ def stato_effettivo(dati):
     if modalita == "FORZA_CHIUSA":
         return "CHIUSA"
 
-    ora_apertura = dati.get("ora_apertura", "08:30")
-    ora_chiusura = dati.get("ora_chiusura", "17:00")
+    ora_apertura = dati.get(
+        "ora_apertura",
+        "08:30"
+    )
+
+    ora_chiusura = dati.get(
+        "ora_chiusura",
+        "17:00"
+    )
 
     adesso = datetime.now().strftime("%H:%M")
 
@@ -72,6 +79,7 @@ def stato_effettivo(dati):
 
 @app.route("/")
 def home():
+
     return redirect("/condizioni")
 
 
@@ -95,7 +103,10 @@ def login():
 
     if request.method == "POST":
 
-        password = request.form.get("password", "")
+        password = request.form.get(
+            "password",
+            ""
+        )
 
         if password == PASSWORD_ADMIN:
 
@@ -127,11 +138,23 @@ def admin():
 
     dati = carica_dati()
 
+    dati["stato"] = stato_effettivo(dati)
+
     if request.method == "POST":
 
-        dati["stato"] = request.form.get(
-            "stato",
-            "APERTA"
+        dati["modalita"] = request.form.get(
+            "modalita",
+            "AUTO"
+        )
+
+        dati["ora_apertura"] = request.form.get(
+            "ora_apertura",
+            "08:30"
+        )
+
+        dati["ora_chiusura"] = request.form.get(
+            "ora_chiusura",
+            "17:00"
         )
 
         dati["km"] = request.form.get(
@@ -162,21 +185,6 @@ def admin():
         dati["note"] = request.form.get(
             "note",
             ""
-        )
-
-        dati["modalita"] = request.form.get(
-            "modalita",
-            "AUTO"
-        )
-
-        dati["ora_apertura"] = request.form.get(
-            "ora_apertura",
-            "08:30"
-        )
-
-        dati["ora_chiusura"] = request.form.get(
-            "ora_chiusura",
-            "17:00"
         )
 
         salva_dati(dati)
