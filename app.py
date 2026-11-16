@@ -46,7 +46,12 @@ def salva_dati(dati):
             ensure_ascii=False,
             indent=4
         )
-
+    print(
+        "SALVATI:",
+        dati["ora_apertura"],
+        dati["ora_chiusura"],
+        dati["modalita"]
+    )
 
 def stato_effettivo(dati):
 
@@ -58,32 +63,30 @@ def stato_effettivo(dati):
     if modalita == "FORZA_CHIUSA":
         return "CHIUSA"
 
-    ora_apertura = dati.get(
-        "ora_apertura",
-        "08:30"
-    )
+    try:
 
-    ora_chiusura = dati.get(
-        "ora_chiusura",
-        "17:00"
-    )
+        apertura = datetime.strptime(
+            dati.get("ora_apertura", "08:30"),
+            "%H:%M"
+        ).time()
 
-    apertura = datetime.strptime(
-        ora_apertura,
-        "%H:%M"
-    ).time()
+        chiusura = datetime.strptime(
+            dati.get("ora_chiusura", "17:00"),
+            "%H:%M"
+        ).time()
 
-    chiusura = datetime.strptime(
-        ora_chiusura,
-        "%H:%M"
-    ).time()
+        ora_attuale = datetime.now().time()
 
-    ora_attuale = datetime.now().time()
+        if apertura <= ora_attuale <= chiusura:
+            return "APERTA"
 
-    if apertura <= ora_attuale <= chiusura:
-        return "APERTA"
+        return "CHIUSA"
 
-    return "CHIUSA"
+    except Exception as e:
+
+        print("ERRORE ORARI:", e)
+
+        return "CHIUSA"
 
 def stato_pattinaggio(dati):
 
