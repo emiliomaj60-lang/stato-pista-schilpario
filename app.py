@@ -199,7 +199,17 @@ def admin():
         "admin.html",
         dati=dati
     )
+@app.route("/orari")
+def orari():
 
+    dati = carica_dati()
+
+    dati["stato"] = stato_effettivo(dati)
+
+    return render_template(
+        "orari.html",
+        dati=dati
+    )
 
 if __name__ == "__main__":
 
