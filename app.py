@@ -75,6 +75,37 @@ def stato_effettivo(dati):
 
     return "CHIUSA"
 
+def stato_pattinaggio(dati):
+
+    modalita = dati.get(
+        "modalita_pattinaggio",
+        "AUTO"
+    )
+
+    if modalita == "FORZA_APERTA":
+        return "APERTA"
+
+    if modalita == "FORZA_CHIUSA":
+        return "CHIUSA"
+
+    # usa gli stessi orari della pista
+
+    ora_apertura = dati.get(
+        "ora_apertura",
+        "08:30"
+    )
+
+    ora_chiusura = dati.get(
+        "ora_chiusura",
+        "17:00"
+    )
+
+    adesso = datetime.now().strftime("%H:%M")
+
+    if ora_apertura <= adesso <= ora_chiusura:
+        return "APERTA"
+
+    return "CHIUSA"
 
 @app.route("/")
 def home():
@@ -88,6 +119,7 @@ def condizioni():
     dati = carica_dati()
 
     dati["stato"] = stato_effettivo(dati)
+    dati["stato_pattinaggio"] = stato_pattinaggio(dati)
 
     return render_template(
         "condizioni.html",
