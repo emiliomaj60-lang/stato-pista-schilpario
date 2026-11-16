@@ -112,14 +112,14 @@ html, body{
 
 <div class="container">
 
-    <div class="box {% if dati.stato == 'CHIUSA' %}chiusa{% else %}stato{% endif %}">
-        <div class="titolo">PISTA</div>
-        <div class="valore">{{ dati.stato }}</div>
+    <div class="box {% if dati.stato_pattinaggio == 'CHIUSA' %}chiusa{% else %}stato{% endif %}">
+        <div class="titolo">PISTA PATTINAGGIO</div>
+        <div class="valore">{{ dati.stato_pattinaggio }}</div>
     </div>
 
-    <div class="box {% if dati.stato_pattinaggio == 'CHIUSA' %}chiusa{% else %}stato{% endif %}">
-        <div class="titolo">PATTINAGGIO</div>
-        <div class="valore">{{ dati.stato_pattinaggio }}</div>
+    <div class="box {% if dati.stato == 'CHIUSA' %}chiusa{% else %}stato{% endif %}">
+        <div class="titolo">PISTA FONDO</div>
+        <div class="valore">{{ dati.stato }}</div>
     </div>
 
     <div class="box">
