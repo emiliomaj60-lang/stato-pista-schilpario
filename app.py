@@ -170,6 +170,11 @@ def admin():
 
     if request.method == "POST":
 
+        dati["modalita_pattinaggio"] = request.form.get(
+            "modalita_pattinaggio",
+            "AUTO"
+        )
+
         dati["modalita"] = request.form.get(
             "modalita",
             "AUTO"
