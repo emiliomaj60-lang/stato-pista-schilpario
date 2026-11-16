@@ -40,7 +40,6 @@ def carica_dati():
 def salva_dati(dati):
 
     with open(FILE_DATI, "w", encoding="utf-8") as f:
-
         json.dump(
             dati,
             f,
@@ -138,8 +137,6 @@ def admin():
 
     dati = carica_dati()
 
-    dati["stato"] = stato_effettivo(dati)
-
     if request.method == "POST":
 
         dati["modalita"] = request.form.get(
@@ -189,7 +186,14 @@ def admin():
 
         salva_dati(dati)
 
-        return redirect("/admin")
+        dati["stato"] = stato_effettivo(dati)
+
+        return render_template(
+            "admin.html",
+            dati=dati
+        )
+
+    dati["stato"] = stato_effettivo(dati)
 
     return render_template(
         "admin.html",
