@@ -220,6 +220,55 @@ value="{{ dati.get('data_battitura','') }}">
 name="note">{{ dati.get('note','') }}</textarea>
 </div>
 
+<div class="card">
+
+<label>Anteprima Tabellone</label>
+
+<div style="
+background:#0d1b2a;
+padding:15px;
+border-radius:8px;
+">
+
+<p><strong>Stato:</strong>
+<span id="preview_stato">
+{{ dati.stato }}
+</span>
+</p>
+
+<p><strong>Km:</strong>
+<span id="preview_km">
+{{ dati.get('km','0') }}
+</span>
+</p>
+
+<p><strong>Aria:</strong>
+<span id="preview_aria">
+{{ dati.get('temperatura_aria','0') }}
+</span>°
+</p>
+
+<p><strong>Neve:</strong>
+<span id="preview_neve">
+{{ dati.get('temperatura_neve','0') }}
+</span>°
+</p>
+
+<p><strong>Battitura:</strong>
+<span id="preview_battitura">
+{{ dati.get('ultima_battitura','')
+}}
+</span>
+
+<span id="preview_data">
+({{ dati.get('data_battitura','') }})
+</span>
+</p>
+
+</div>
+
+</div>
+
 <button class="btn" type="submit">
 💾 SALVA
 </button>
@@ -263,6 +312,49 @@ function impostaAdesso() {
     ).value =
         giorno + "/" + mese + "/" + anno;
 }
+
+</script>
+
+<script>
+
+function aggiornaAnteprima(){
+
+    document.getElementById("preview_km").textContent =
+        document.querySelector(
+            '[name="km"]'
+        ).value;
+
+    document.getElementById("preview_aria").textContent =
+        document.querySelector(
+            '[name="temperatura_aria"]'
+        ).value;
+
+    document.getElementById("preview_neve").textContent =
+        document.querySelector(
+            '[name="temperatura_neve"]'
+        ).value;
+
+    document.getElementById("preview_battitura").textContent =
+        document.querySelector(
+            '[name="ultima_battitura"]'
+        ).value;
+
+    document.getElementById("preview_data").textContent =
+        "(" +
+        document.querySelector(
+            '[name="data_battitura"]'
+        ).value +
+        ")";
+}
+
+document
+.querySelectorAll("input, select, textarea")
+.forEach(el => {
+    el.addEventListener(
+        "input",
+        aggiornaAnteprima
+    );
+});
 
 </script>
 
