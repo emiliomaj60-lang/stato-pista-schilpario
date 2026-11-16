@@ -68,9 +68,19 @@ def stato_effettivo(dati):
         "17:00"
     )
 
-    adesso = datetime.now().strftime("%H:%M")
+    apertura = datetime.strptime(
+        ora_apertura,
+        "%H:%M"
+    ).time()
 
-    if ora_apertura <= adesso <= ora_chiusura:
+    chiusura = datetime.strptime(
+        ora_chiusura,
+        "%H:%M"
+    ).time()
+
+    ora_attuale = datetime.now().time()
+
+    if apertura <= ora_attuale <= chiusura:
         return "APERTA"
 
     return "CHIUSA"
