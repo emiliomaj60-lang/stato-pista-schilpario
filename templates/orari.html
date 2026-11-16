@@ -37,26 +37,29 @@ html,body{
 }
 
 .titolo{
+
     font-size:18px;
     font-weight:bold;
     color:#d7d7d7;
 
-    text-decoration: underline;
+    text-decoration:underline;
 
-    margin-bottom:18px;
+    margin-bottom:20px;
 }
 
 .orario{
-    font-size:36px;
+
+    font-size:38px;
     font-weight:bold;
 
     line-height:1;
 }
 
 .sottotitolo{
-    margin-top:8px;
 
-    font-size:12px;
+    margin-top:12px;
+
+    font-size:13px;
 
     color:#c7d3df;
 }
@@ -70,15 +73,35 @@ html,body{
 <div class="container">
 
     <div class="titolo">
-        ORARIO APERTURA PISTA
+
+        {% if dati.modalita == "FORZA_APERTA" %}
+
+            APERTURA STRAORDINARIA
+
+        {% elif dati.modalita == "FORZA_CHIUSA" %}
+
+            CHIUSURA STRAORDINARIA
+
+        {% else %}
+
+            ORARIO PISTA
+
+        {% endif %}
+
     </div>
 
     <div class="orario">
-        {{ dati.ora_apertura }} - {{ dati.ora_chiusura }}
+
+        {{ dati.ora_apertura }}
+        -
+        {{ dati.ora_chiusura }}
+
     </div>
 
     <div class="sottotitolo">
-        Pista degli abeti Schilpario
+
+        Centro Fondo Schilpario
+
     </div>
 
 </div>
