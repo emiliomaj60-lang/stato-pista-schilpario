@@ -127,7 +127,7 @@ Modalità:
 </div>
 
 <div class="card">
-<label>Modalità</label>
+<label>Modalità Pista Fondo</label>
 
 <select name="modalita">
 
@@ -147,6 +147,35 @@ FORZA APERTA
 
 <option value="FORZA_CHIUSA"
 {% if dati.get('modalita','AUTO') == 'FORZA_CHIUSA' %}
+selected
+{% endif %}>
+FORZA CHIUSA
+</option>
+
+</select>
+</div>
+
+<div class="card">
+<label>Modalità Pattinaggio</label>
+
+<select name="modalita_pattinaggio">
+
+<option value="AUTO"
+{% if dati.get('modalita_pattinaggio','AUTO') == 'AUTO' %}
+selected
+{% endif %}>
+AUTO
+</option>
+
+<option value="FORZA_APERTA"
+{% if dati.get('modalita_pattinaggio','AUTO') == 'FORZA_APERTA' %}
+selected
+{% endif %}>
+FORZA APERTA
+</option>
+
+<option value="FORZA_CHIUSA"
+{% if dati.get('modalita_pattinaggio','AUTO') == 'FORZA_CHIUSA' %}
 selected
 {% endif %}>
 FORZA CHIUSA
@@ -202,6 +231,12 @@ value="{{ dati.get('temperatura_neve','0') }}">
 
 <div class="card">
 <label>Ora battitura</label>
+
+<input
+type="text"
+name="ultima_battitura"
+value="{{ dati.get('ultima_battitura','06:30') }}">
+</div>
 
 <div class="card">
 
