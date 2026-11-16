@@ -1,6 +1,7 @@
 import json
 import os
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 from flask import (
     Flask,
@@ -75,7 +76,9 @@ def stato_effettivo(dati):
             "%H:%M"
         ).time()
 
-        ora_attuale = datetime.now().time()
+        ora_attuale = datetime.now(
+            ZoneInfo("Europe/Rome")
+        ).time()
 
         if apertura <= ora_attuale <= chiusura:
             return "APERTA"
@@ -101,24 +104,7 @@ def stato_pattinaggio(dati):
     if modalita == "FORZA_CHIUSA":
         return "CHIUSA"
 
-    # usa gli stessi orari della pista
-
-    ora_apertura = dati.get(
-        "ora_apertura",
-        "08:30"
-    )
-
-    ora_chiusura = dati.get(
-        "ora_chiusura",
-        "17:00"
-    )
-
-    adesso = datetime.now().strftime("%H:%M")
-
-    if ora_apertura <= adesso <= ora_chiusura:
-        return "APERTA"
-
-    return "CHIUSA"
+    return stato_effettivo(dati)
 
 @app.route("/")
 def home():
