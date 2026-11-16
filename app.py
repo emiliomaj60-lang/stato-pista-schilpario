@@ -199,6 +199,7 @@ def admin():
         "admin.html",
         dati=dati
     )
+
 @app.route("/orari")
 def orari():
 
