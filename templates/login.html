@@ -2,10 +2,18 @@
 <html lang="it">
 
 <head>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Accesso Admin</title>
+<title>Centro Fondo Schilpario</title>
+
+<meta name="theme-color" content="#0d1b2a">
+
+<link rel="manifest" href="/static/manifest.json">
+
+<link rel="apple-touch-icon"
+      href="/static/logo-512.png">
 
 <style>
 
@@ -28,8 +36,21 @@ body{
     border-radius:12px;
 }
 
+.logo{
+    text-align:center;
+    font-size:60px;
+}
+
 h1{
     text-align:center;
+    margin-top:10px;
+    margin-bottom:5px;
+}
+
+.sottotitolo{
+    text-align:center;
+    color:#c7d3df;
+    margin-bottom:20px;
 }
 
 input{
@@ -55,10 +76,21 @@ button{
     cursor:pointer;
 }
 
+button:hover{
+    background:#27ae60;
+}
+
 .errore{
     color:#ff6b6b;
     text-align:center;
-    margin-top:10px;
+    margin-top:12px;
+}
+
+.versione{
+    text-align:center;
+    margin-top:20px;
+    color:#7d8794;
+    font-size:12px;
 }
 
 </style>
@@ -71,7 +103,15 @@ button{
 
 <div class="card">
 
-<h1>🎿 Centro Fondo</h1>
+<div class="logo">
+🎿
+</div>
+
+<h1>Centro Fondo</h1>
+
+<div class="sottotitolo">
+Schilpario
+</div>
 
 <form method="post">
 
@@ -91,6 +131,10 @@ Accedi
 {{ errore }}
 </div>
 {% endif %}
+
+<div class="versione">
+Pannello gestione piste
+</div>
 
 </div>
 
