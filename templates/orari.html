@@ -22,41 +22,29 @@ html, body{
 .container{
     width:100%;
     height:100%;
+
     display:flex;
     flex-direction:column;
+
     justify-content:center;
     align-items:center;
 }
 
-.stato{
-    font-size:46px;
+.titolo{
+    font-size:24px;
     font-weight:bold;
-    padding:12px 30px;
-    border-radius:12px;
+    color:#d7d7d7;
     margin-bottom:20px;
 }
 
-.aperta{
-    background:#27ae60;
-}
-
-.chiusa{
-    background:#c0392b;
-}
-
-.titolo{
-    font-size:22px;
-    color:#d7d7d7;
-    margin-bottom:10px;
-}
-
 .orario{
-    font-size:56px;
+    font-size:72px;
     font-weight:bold;
+    line-height:1;
 }
 
 .sottotitolo{
-    margin-top:15px;
+    margin-top:20px;
     font-size:20px;
     color:#c7d3df;
 }
@@ -68,10 +56,6 @@ html, body{
 <body>
 
 <div class="container">
-
-    <div class="stato {% if dati.stato == 'APERTA' %}aperta{% else %}chiusa{% endif %}">
-        {{ dati.stato }}
-    </div>
 
     <div class="titolo">
         ORARIO PISTA
