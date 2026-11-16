@@ -185,6 +185,19 @@ value="{{ dati.get('temperatura_neve','0') }}">
 <div class="card">
 <label>Ora battitura</label>
 
+<div class="card">
+
+<button
+type="button"
+class="btn"
+onclick="impostaAdesso()">
+
+🕒 ADESSO
+
+</button>
+
+</div>
+
 <input
 type="text"
 name="ultima_battitura"
@@ -218,6 +231,40 @@ name="note">{{ dati.get('note','') }}</textarea>
 </a>
 
 </div>
+
+<script>
+
+function impostaAdesso() {
+
+    const adesso = new Date();
+
+    const ore =
+        String(adesso.getHours()).padStart(2, "0");
+
+    const minuti =
+        String(adesso.getMinutes()).padStart(2, "0");
+
+    const giorno =
+        String(adesso.getDate()).padStart(2, "0");
+
+    const mese =
+        String(adesso.getMonth() + 1).padStart(2, "0");
+
+    const anno =
+        adesso.getFullYear();
+
+    document.querySelector(
+        'input[name="ultima_battitura"]'
+    ).value =
+        ore + ":" + minuti;
+
+    document.querySelector(
+        'input[name="data_battitura"]'
+    ).value =
+        giorno + "/" + mese + "/" + anno;
+}
+
+</script>
 
 </body>
 </html>
