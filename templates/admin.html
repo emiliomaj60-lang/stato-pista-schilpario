@@ -87,25 +87,43 @@ textarea{
 <form method="post">
 
 <div class="card">
-<label>Stato pista</label>
 
-<select name="stato">
+<label>Stato attuale tabellone</label>
 
-<option value="APERTA"
-{% if dati.get('stato','APERTA') == 'APERTA' %}
-selected
-{% endif %}>
-APERTA
-</option>
+{% if dati.stato == "APERTA" %}
+<div style="
+background:#27ae60;
+padding:15px;
+border-radius:8px;
+text-align:center;
+font-size:24px;
+font-weight:bold;
+">
+🟢 APERTA
+</div>
+{% else %}
+<div style="
+background:#c0392b;
+padding:15px;
+border-radius:8px;
+text-align:center;
+font-size:24px;
+font-weight:bold;
+">
+🔴 CHIUSA
+</div>
+{% endif %}
 
-<option value="CHIUSA"
-{% if dati.get('stato','APERTA') == 'CHIUSA' %}
-selected
-{% endif %}>
-CHIUSA
-</option>
+<p style="margin-top:15px;">
 
-</select>
+Modalità:
+
+<strong>
+{{ dati.get('modalita','AUTO') }}
+</strong>
+
+</p>
+
 </div>
 
 <div class="card">
