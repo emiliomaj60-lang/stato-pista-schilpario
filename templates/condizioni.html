@@ -86,9 +86,24 @@ html, body{
     border-radius:4px;
 
     text-align:center;
+
+    animation: lampeggia 1.2s infinite;
 }
+@keyframes lampeggia{
 
+    0%{
+        background:#f39c12;
+    }
 
+    50%{
+        background:#ffcc33;
+    }
+
+    100%{
+        background:#f39c12;
+    }
+
+}
 </style>
 
 </head>
