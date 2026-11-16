@@ -2,6 +2,7 @@
 <html lang="it">
 
 <head>
+
 <meta charset="utf-8">
 <meta http-equiv="refresh" content="30">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,9 +14,9 @@ html, body{
     padding:0;
     width:100%;
     height:100%;
-    overflow:hidden;
     background:#0d1b2a;
     font-family:Arial,sans-serif;
+    overflow:hidden;
 }
 
 .container{
@@ -29,16 +30,14 @@ html, body{
 
 .box{
     flex:1;
-    height:100%;
     background:#1b263b;
     border-radius:6px;
+    color:white;
 
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
-
-    color:white;
 }
 
 .stato{
@@ -63,14 +62,21 @@ html, body{
     line-height:1;
 }
 
+.data{
+    font-size:11px;
+    color:#c7d3df;
+    margin-top:4px;
+}
+
 .note{
     background:#f39c12;
     color:white;
-    font-size:11px;
+    font-size:13px;
+    font-weight:bold;
     text-align:center;
-    padding:4px;
-    margin-top:2px;
-    border-radius:4px;
+    padding:6px;
+    margin:3px;
+    border-radius:6px;
 }
 
 </style>
@@ -108,10 +114,15 @@ html, body{
             ({{ dati.data_battitura }})
         </div>
     </div>
-    <div class="note">
-        {{ dati.note }}
-    </div>
+
 </div>
 
+{% if dati.note %}
+<div class="note">
+    {{ dati.note }}
+</div>
+{% endif %}
+
 </body>
+
 </html>
