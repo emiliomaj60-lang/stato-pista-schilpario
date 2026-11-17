@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="30">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+
+html,
+body{
+
+    margin:0;
+    padding:0;
+
+    width:100%;
+    height:100%;
+
+    overflow:hidden;
+
+    background:#f39c12;
+
+    font-family:Arial,sans-serif;
+}
+
+.ticker{
+
+    width:100%;
+    height:100%;
+
+    display:flex;
+    align-items:center;
+
+    overflow:hidden;
+
+    white-space:nowrap;
+}
+
+.testo{
+
+    font-size:36px;
+
+    font-weight:bold;
+
+    color:#000;
+
+    padding-left:100%;
+
+    animation:
+        scorri 25s linear infinite;
+}
+
+@keyframes scorri{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-100%);
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="ticker">
+
+    <div class="testo">
+
+        {{ dati.get('ticker','') }}
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
