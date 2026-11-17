@@ -318,6 +318,16 @@ def orari():
         dati=dati
     )
 
+@app.route("/ticker")
+def ticker():
+
+    dati = carica_dati()
+
+    return render_template(
+        "ticker.html",
+        dati=dati
+    )
+
 if __name__ == "__main__":
 
     app.run(
