@@ -321,7 +321,7 @@ def ticker():
         dati=dati
     )
 
-@app.route("/ticker_admin", methods=["GET","POST"])
+@app.route("/ticker_admin", methods=["GET", "POST"])
 def ticker_admin():
 
     if not session.get("logged"):
@@ -355,14 +355,15 @@ def ticker_admin():
             "ticker_animazione",
             "NESSUNA"
         )
+
         salva_dati(dati)
 
-        dati = carica_dati()
+        return redirect("/admin")
 
-        return render_template(
-            "ticker_admin.html",
-            dati=dati
-        )
+    return render_template(
+        "ticker_admin.html",
+        dati=dati
+    )
 
 if __name__ == "__main__":
 
