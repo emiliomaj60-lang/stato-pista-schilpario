@@ -134,9 +134,20 @@ value="{{ dati.get('ticker_fg','#000000') }}">
 
 <select name="ticker_speed">
 
-<option value="10">Molto veloce</option>
-<option value="20">Media</option>
-<option value="30">Lenta</option>
+<option value="10"
+{% if dati.get('ticker_speed') == '10' %}selected{% endif %}>
+Molto veloce
+</option>
+
+<option value="20"
+{% if dati.get('ticker_speed','20') == '20' %}selected{% endif %}>
+Media
+</option>
+
+<option value="30"
+{% if dati.get('ticker_speed') == '30' %}selected{% endif %}>
+Lenta
+</option>
 
 </select>
 
@@ -148,8 +159,15 @@ value="{{ dati.get('ticker_fg','#000000') }}">
 
 <select name="ticker_blink">
 
-<option value="NO">NO</option>
-<option value="SI">SI</option>
+<option value="NO"
+{% if dati.get('ticker_blink','NO') == 'NO' %}selected{% endif %}>
+NO
+</option>
+
+<option value="SI"
+{% if dati.get('ticker_blink') == 'SI' %}selected{% endif %}>
+SI
+</option>
 
 </select>
 

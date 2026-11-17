@@ -20,7 +20,7 @@ body{
 
     overflow:hidden;
 
-    background:#f39c12;
+    background:{{ dati.get('ticker_bg','#f39c12') }};
 
     font-family:Arial,sans-serif;
 }
@@ -31,6 +31,7 @@ body{
     height:100%;
 
     display:flex;
+
     align-items:center;
 
     overflow:hidden;
@@ -44,12 +45,19 @@ body{
 
     font-weight:bold;
 
-    color:#000;
+    color:{{ dati.get('ticker_fg','#000000') }};
 
     padding-left:100%;
 
     animation:
-        scorri 25s linear infinite;
+        scorri {{ dati.get('ticker_speed','20') }}s linear infinite;
+}
+
+.blink{
+
+    animation:
+        scorri {{ dati.get('ticker_speed','20') }}s linear infinite,
+        lampeggia 1s infinite;
 }
 
 @keyframes scorri{
@@ -64,6 +72,14 @@ body{
 
 }
 
+@keyframes lampeggia{
+
+    50%{
+        opacity:0.3;
+    }
+
+}
+
 </style>
 
 </head>
@@ -72,7 +88,7 @@ body{
 
 <div class="ticker">
 
-    <div class="testo">
+    <div class="testo {% if dati.get('ticker_blink','NO') == 'SI' %}blink{% endif %}">
 
         {{ dati.get('ticker','') }}
 
