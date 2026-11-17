@@ -80,6 +80,26 @@ textarea{
     }
 
 }
+.blink{
+    animation: blink 1s infinite;
+}
+
+@keyframes blink{
+
+    0%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:0.3;
+    }
+
+    100%{
+        opacity:1;
+    }
+
+}
+
 </style>
 
 </head>
@@ -247,17 +267,16 @@ name="note">{{ dati.get('note','') }}</textarea>
 <label>Anteprima Ticker</label>
 
 <div
+class="{% if dati.get('ticker_blink') == 'SI' %}blink{% endif %}"
 style="
 background:{{ dati.get('ticker_bg','#f39c12') }};
 color:{{ dati.get('ticker_fg','#000000') }};
-padding:15px;
+padding:18px;
 border-radius:8px;
 font-size:22px;
 font-weight:bold;
 text-align:center;
-{% if dati.get('ticker_blink') == 'SI' %}
-animation: blink 1s infinite;
-{% endif %}
+overflow:hidden;
 ">
 
 📢 {{ dati.get('ticker','NESSUN MESSAGGIO IMPOSTATO') }}
@@ -268,7 +287,7 @@ animation: blink 1s infinite;
 href="/ticker_admin"
 style="
 display:block;
-margin-top:15px;
+margin-top:12px;
 padding:15px;
 text-align:center;
 background:#3498db;
@@ -279,9 +298,11 @@ font-size:20px;
 font-weight:bold;
 ">
 
-📢 MODIFICA TICKER
+⚙️ MODIFICA TICKER
 
 </a>
+
+</div>
 
 </div>
 
@@ -374,23 +395,6 @@ border-radius:8px;
 </button>
 
 </form>
-
-<a
-href="/ticker_admin"
-style="
-display:block;
-margin-top:20px;
-padding:18px;
-text-align:center;
-background:#3498db;
-color:white;
-text-decoration:none;
-border-radius:10px;
-font-size:22px;
-font-weight:bold;
-">
-📢 GESTIONE TICKER
-</a>
 
 <a class="logout" href="/logout">
 🚪 Logout
