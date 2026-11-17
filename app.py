@@ -27,41 +27,25 @@ def carica_dati():
     dati.setdefault("km", "0")
     dati.setdefault("temperatura_aria", "0")
     dati.setdefault("temperatura_neve", "0")
+
     dati.setdefault("ultima_battitura", "")
     dati.setdefault("data_battitura", "")
+
     dati.setdefault("modalita", "AUTO")
     dati.setdefault("ora_apertura", "08:30")
     dati.setdefault("ora_chiusura", "17:00")
+
+    dati.setdefault("modalita_pattinaggio", "AUTO")
+    dati.setdefault("ora_apertura_pattinaggio", "09:00")
+    dati.setdefault("ora_chiusura_pattinaggio", "17:00")
+
     dati.setdefault("note", "")
+
     dati.setdefault("ticker", "")
     dati.setdefault("ticker_bg", "#f39c12")
     dati.setdefault("ticker_fg", "#000000")
     dati.setdefault("ticker_speed", "20")
-    dati.setdefault("ticker_blink", "NO")
-
-    dati.setdefault(
-        "modalita_pattinaggio",
-        "AUTO"
-    )
-
-    dati.setdefault(
-        "ora_apertura_pattinaggio",
-        "09:00"
-    )
-
-    dati.setdefault(
-        "ora_chiusura_pattinaggio",
-        "17:00"
-    )
-
-    dati.setdefault(
-        "ticker",
-        ""
-    )
-    dati.setdefault(
-        "ticker_animazione",
-        "NESSUNA"
-    )
+    dati.setdefault("ticker_animazione", "NESSUNA")
 
     return dati
 
