@@ -357,8 +357,6 @@ def ticker_admin():
         )
         salva_dati(dati)
 
-        salva_dati(dati)
-
         return redirect("/admin")
 
 if __name__ == "__main__":
