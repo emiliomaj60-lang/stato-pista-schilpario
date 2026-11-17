@@ -38,26 +38,52 @@ html,body{
 
 .titolo{
 
-    font-size:18px;
+    font-size:16px;
     font-weight:bold;
     color:#d7d7d7;
 
     text-decoration:underline;
 
-    margin-bottom:18px;
+    margin-bottom:10px;
 }
 
-.orario{
+.orari{
 
-    font-size:38px;
+    width:92%;
+}
+
+.riga-orario{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:4px;
+}
+
+.nome{
+
+    font-size:18px;
+
     font-weight:bold;
 
-    line-height:1;
+    color:white;
+}
+
+.fascia{
+
+    font-size:20px;
+
+    font-weight:bold;
+
+    color:white;
 }
 
 .sottotitolo{
 
-    margin-top:6px;
+    margin-top:4px;
 
     font-size:13px;
 
@@ -84,17 +110,41 @@ html,body{
 
         {% else %}
 
-            ORARIO PISTA
+            ORARI IMPIANTI
 
         {% endif %}
 
     </div>
 
-    <div class="orario">
+    <div class="orari">
 
-        {{ dati.ora_apertura }}
-        -
-        {{ dati.ora_chiusura }}
+        <div class="riga-orario">
+
+            <span class="nome">
+                SCI DI FONDO
+            </span>
+
+            <span class="fascia">
+                {{ dati.ora_apertura }}
+                -
+                {{ dati.ora_chiusura }}
+            </span>
+
+        </div>
+
+        <div class="riga-orario">
+
+            <span class="nome">
+                PATTINAGGIO
+            </span>
+
+            <span class="fascia">
+                {{ dati.ora_apertura_pattinaggio }}
+                -
+                {{ dati.ora_chiusura_pattinaggio }}
+            </span>
+
+        </div>
 
     </div>
 
