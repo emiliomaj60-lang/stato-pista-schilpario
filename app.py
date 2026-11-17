@@ -33,6 +33,11 @@ def carica_dati():
     dati.setdefault("ora_apertura", "08:30")
     dati.setdefault("ora_chiusura", "17:00")
     dati.setdefault("note", "")
+    dati.setdefault("ticker", "")
+    dati.setdefault("ticker_bg", "#f39c12")
+    dati.setdefault("ticker_fg", "#000000")
+    dati.setdefault("ticker_speed", "20")
+    dati.setdefault("ticker_blink", "NO")
 
     dati.setdefault(
         "modalita_pattinaggio",
@@ -325,6 +330,48 @@ def ticker():
 
     return render_template(
         "ticker.html",
+        dati=dati
+    )
+
+@app.route("/ticker_admin", methods=["GET","POST"])
+def ticker_admin():
+
+    if not session.get("logged"):
+        return redirect("/login")
+
+    dati = carica_dati()
+
+    if request.method == "POST":
+
+        dati["ticker"] = request.form.get(
+            "ticker",
+            ""
+        )
+
+        dati["ticker_bg"] = request.form.get(
+            "ticker_bg",
+            "#f39c12"
+        )
+
+        dati["ticker_fg"] = request.form.get(
+            "ticker_fg",
+            "#000000"
+        )
+
+        dati["ticker_speed"] = request.form.get(
+            "ticker_speed",
+            "20"
+        )
+
+        dati["ticker_blink"] = request.form.get(
+            "ticker_blink",
+            "NO"
+        )
+
+        salva_dati(dati)
+
+    return render_template(
+        "ticker_admin.html",
         dati=dati
     )
 
