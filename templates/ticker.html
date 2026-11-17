@@ -20,9 +20,51 @@ body{
 
     overflow:hidden;
 
+    font-family:Arial,sans-serif;
+}
+
+/* SFONDI */
+
+body{
+
+{% if dati.get('ticker_bg') == 'GRADIENTE_BLU' %}
+
+    background:linear-gradient(
+        90deg,
+        #001f3f,
+        #3498db
+    );
+
+{% elif dati.get('ticker_bg') == 'GRADIENTE_ROSSO' %}
+
+    background:linear-gradient(
+        90deg,
+        #8b0000,
+        #ff3333
+    );
+
+{% elif dati.get('ticker_bg') == 'GRADIENTE_VERDE' %}
+
+    background:linear-gradient(
+        90deg,
+        #145a32,
+        #2ecc71
+    );
+
+{% elif dati.get('ticker_bg') == 'NERO_ROSSO' %}
+
+    background:linear-gradient(
+        90deg,
+        #000000,
+        #c0392b
+    );
+
+{% else %}
+
     background:{{ dati.get('ticker_bg','#f39c12') }};
 
-    font-family:Arial,sans-serif;
+{% endif %}
+
 }
 
 .ticker{
@@ -50,8 +92,24 @@ body{
     padding-left:100%;
 
     animation:
-        scorri {{ dati.get('ticker_speed','20') }}s linear infinite;
+        scorri var(--velocita) linear infinite;
 }
+
+.lampeggio{
+
+    animation:
+        scorri var(--velocita) linear infinite,
+        blink 1s infinite;
+}
+
+.evidenziazione{
+
+    animation:
+        scorri var(--velocita) linear infinite,
+        evidenzia 1s infinite;
+}
+
+/* SCORRIMENTO */
 
 @keyframes scorri{
 
@@ -65,50 +123,38 @@ body{
 
 }
 
-.lampeggio{
-    animation:
-        scorri var(--velocita) linear infinite,
-        blink 1s infinite;
-}
+/* LAMPEGGIO */
+
 @keyframes blink{
+
+    0%{
+        opacity:1;
+    }
 
     50%{
         opacity:0.3;
     }
 
-}
-.lampeggio{
-    animation:
-        scorri var(--velocita) linear infinite,
-        blink 1s infinite;
-}
-
-.evidenziazione{
-    animation:
-        scorri var(--velocita) linear infinite,
-        evidenzia 1s infinite;
-}
-
-@keyframes blink{
-
-    50%{
-        opacity:0.3;
+    100%{
+        opacity:1;
     }
 
 }
+
+/* EVIDENZIAZIONE */
 
 @keyframes evidenzia{
 
     0%{
-        color:inherit;
+        filter:none;
     }
 
     50%{
-        color:yellow;
+        filter:brightness(180%);
     }
 
     100%{
-        color:inherit;
+        filter:none;
     }
 
 }
@@ -122,14 +168,22 @@ body{
 <div class="ticker">
 
     <div
+
     class="
     testo
-    {% if dati.get('ticker_animazione') == 'LAMPEGGIO' %}lampeggio{% endif %}
-    {% if dati.get('ticker_animazione') == 'EVIDENZIAZIONE' %}evidenziazione{% endif %}
+    {% if dati.get('ticker_animazione') == 'LAMPEGGIO' %}
+    lampeggio
+    {% endif %}
+    {% if dati.get('ticker_animazione') == 'EVIDENZIAZIONE' %}
+    evidenziazione
+    {% endif %}
     "
+
     style="
     --velocita:{{ dati.get('ticker_speed','20') }}s;
-    ">
+    "
+
+    >
 
         {{ dati.get('ticker','') }}
 
