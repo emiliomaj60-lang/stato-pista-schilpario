@@ -351,10 +351,6 @@ def ticker_admin():
             "20"
         )
 
-        dati["ticker_blink"] = request.form.get(
-            "ticker_blink",
-            "NO"
-        )
         dati["ticker_animazione"] = request.form.get(
             "ticker_animazione",
             "NESSUNA"
