@@ -58,6 +58,10 @@ def carica_dati():
         "ticker",
         ""
     )
+    dati.setdefault(
+        "ticker_animazione",
+        "NESSUNA"
+    )
 
     return dati
 
@@ -367,7 +371,10 @@ def ticker_admin():
             "ticker_blink",
             "NO"
         )
-
+        dati["ticker_animazione"] = request.form.get(
+            "ticker_animazione",
+            "NESSUNA"
+        )
         salva_dati(dati)
 
     return render_template(
