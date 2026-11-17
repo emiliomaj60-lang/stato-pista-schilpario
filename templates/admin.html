@@ -73,7 +73,13 @@ textarea{
     color:white;
     text-decoration:none;
 }
+@keyframes blink{
 
+    50%{
+        opacity:0.4;
+    }
+
+}
 </style>
 
 </head>
@@ -237,10 +243,45 @@ name="note">{{ dati.get('note','') }}</textarea>
 </div>
 
 <div class="card">
-<label>Ticker</label>
 
-<textarea
-name="ticker">{{ dati.get('ticker','') }}</textarea>
+<label>Anteprima Ticker</label>
+
+<div
+style="
+background:{{ dati.get('ticker_bg','#f39c12') }};
+color:{{ dati.get('ticker_fg','#000000') }};
+padding:15px;
+border-radius:8px;
+font-size:22px;
+font-weight:bold;
+text-align:center;
+{% if dati.get('ticker_blink') == 'SI' %}
+animation: blink 1s infinite;
+{% endif %}
+">
+
+📢 {{ dati.get('ticker','NESSUN MESSAGGIO IMPOSTATO') }}
+
+</div>
+
+<a
+href="/ticker_admin"
+style="
+display:block;
+margin-top:15px;
+padding:15px;
+text-align:center;
+background:#3498db;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-size:20px;
+font-weight:bold;
+">
+
+📢 MODIFICA TICKER
+
+</a>
 
 </div>
 
