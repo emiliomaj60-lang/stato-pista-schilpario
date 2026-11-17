@@ -276,11 +276,6 @@ def admin():
             ""
         )
 
-        dati["ticker"] = request.form.get(
-            "ticker",
-            ""
-        )
-
         salva_dati(dati)
 
         dati["stato"] = stato_effettivo(dati)
