@@ -230,19 +230,9 @@ Nessuna
 Lampeggio
 </option>
 
-<option value="PULSAZIONE"
-{% if dati.get('ticker_animazione') == 'PULSAZIONE' %}selected{% endif %}>
-Pulsazione
-</option>
-
-<option value="ZOOM"
-{% if dati.get('ticker_animazione') == 'ZOOM' %}selected{% endif %}>
-Zoom
-</option>
-
-<option value="EMERGENZA"
-{% if dati.get('ticker_animazione') == 'EMERGENZA' %}selected{% endif %}>
-Emergenza
+<option value="EVIDENZIAZIONE"
+{% if dati.get('ticker_animazione') == 'EVIDENZIAZIONE' %}selected{% endif %}>
+Evidenziazione
 </option>
 
 </select>
