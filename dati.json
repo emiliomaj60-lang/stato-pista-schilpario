@@ -8,5 +8,7 @@
     "ora_apertura": "08:30",
     "ora_chiusura": "17:00",
     "note": "Condizioni ottime",
+    "ora_apertura_pattinaggio": "09:00",
+    "ora_chiusura_pattinaggio": "17:00",
     "modalita_pattinaggio": "AUTO"
 }
