@@ -99,6 +99,54 @@ textarea{
     }
 
 }
+.ticker-preview{
+
+    white-space:nowrap;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    padding-left:100%;
+
+    animation:
+        tickerScroll 20s linear infinite;
+}
+
+.blink{
+
+    animation:
+        tickerScroll 20s linear infinite,
+        blink 1s infinite;
+}
+
+@keyframes tickerScroll{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-100%);
+    }
+
+}
+
+@keyframes blink{
+
+    0%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:0.3;
+    }
+
+    100%{
+        opacity:1;
+    }
+
+}
 
 </style>
 
@@ -267,19 +315,30 @@ name="note">{{ dati.get('note','') }}</textarea>
 <label>Anteprima Ticker</label>
 
 <div
-class="{% if dati.get('ticker_blink') == 'SI' %}blink{% endif %}"
 style="
 background:{{ dati.get('ticker_bg','#f39c12') }};
 color:{{ dati.get('ticker_fg','#000000') }};
-padding:18px;
-border-radius:8px;
-font-size:22px;
-font-weight:bold;
-text-align:center;
+height:60px;
 overflow:hidden;
+border-radius:8px;
+display:flex;
+align-items:center;
+">
+
+<div
+class="
+ticker-preview
+{% if dati.get('ticker_blink') == 'SI' %}
+blink
+{% endif %}
+"
+style="
+animation-duration:{{ dati.get('ticker_speed','20') }}s;
 ">
 
 📢 {{ dati.get('ticker','NESSUN MESSAGGIO IMPOSTATO') }}
+
+</div>
 
 </div>
 
@@ -301,8 +360,6 @@ font-weight:bold;
 ⚙️ MODIFICA TICKER
 
 </a>
-
-</div>
 
 </div>
 

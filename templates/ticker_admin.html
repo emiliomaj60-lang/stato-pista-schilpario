@@ -229,23 +229,6 @@ SI
 
 </div>
 
-<div class="card">
-
-<label>Anteprima</label>
-
-<div
-class="preview {% if dati.get('ticker_blink') == 'SI' %}blink{% endif %}"
-style="
-background:{{ dati.get('ticker_bg','#f39c12') }};
-color:{{ dati.get('ticker_fg','#000000') }};
-">
-
-{{ dati.get('ticker','NESSUN MESSAGGIO') }}
-
-</div>
-
-</div>
-
 <button
 class="btn"
 type="submit">
