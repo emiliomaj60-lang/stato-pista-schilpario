@@ -357,10 +357,9 @@ def ticker_admin():
         )
         salva_dati(dati)
 
-    return render_template(
-        "ticker_admin.html",
-        dati=dati
-    )
+        salva_dati(dati)
+
+        return redirect("/admin")
 
 if __name__ == "__main__":
 
