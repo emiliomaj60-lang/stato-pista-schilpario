@@ -217,4 +217,55 @@ Lenta
 
 <select name="ticker_blink">
 
-<option value
+<option value="NO" {% if dati.get('ticker_blink','NO') == 'NO' %}selected{% endif %}>
+NO
+</option>
+
+<option value="SI" {% if dati.get('ticker_blink') == 'SI' %}selected{% endif %}>
+SI
+</option>
+
+</select>
+
+</div>
+
+<div class="card">
+
+<label>Anteprima</label>
+
+<div
+class="preview {% if dati.get('ticker_blink') == 'SI' %}blink{% endif %}"
+style="
+background:{{ dati.get('ticker_bg','#f39c12') }};
+color:{{ dati.get('ticker_fg','#000000') }};
+">
+
+{{ dati.get('ticker','NESSUN MESSAGGIO') }}
+
+</div>
+
+</div>
+
+<button
+class="btn"
+type="submit">
+
+💾 SALVA TICKER
+
+</button>
+
+<a
+href="/admin"
+class="torna">
+
+⬅ TORNA ALLA GESTIONE PISTA
+
+</a>
+
+</form>
+
+</div>
+
+</body>
+
+</html>
