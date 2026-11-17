@@ -119,6 +119,21 @@ textarea{
         tickerScroll 20s linear infinite,
         blink 1s infinite;
 }
+.evidenziazione{
+
+    animation:
+        tickerScroll 20s linear infinite,
+        evidenzia 1s infinite;
+}
+
+@keyframes evidenzia{
+
+    50%{
+        background:white;
+        color:red;
+    }
+
+}
 
 @keyframes tickerScroll{
 
@@ -328,9 +343,8 @@ align-items:center;
 <div
 class="
 ticker-preview
-{% if dati.get('ticker_blink') == 'SI' %}
-blink
-{% endif %}
+{% if dati.get('ticker_animazione') == 'LAMPEGGIO' %}blink{% endif %}
+{% if dati.get('ticker_animazione') == 'EVIDENZIAZIONE' %}evidenziazione{% endif %}
 "
 style="
 animation-duration:{{ dati.get('ticker_speed','20') }}s;
