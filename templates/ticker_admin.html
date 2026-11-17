@@ -4,9 +4,7 @@
 <head>
 
 <meta charset="utf-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Gestione Ticker</title>
 
@@ -31,7 +29,12 @@ body{
     margin-bottom:12px;
 }
 
-input,
+label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
 select,
 textarea{
     width:100%;
@@ -55,6 +58,7 @@ textarea{
     color:white;
     font-size:22px;
     font-weight:bold;
+    cursor:pointer;
 }
 
 .preview{
@@ -63,15 +67,15 @@ textarea{
 
     padding:15px;
 
-    overflow:hidden;
-
-    white-space:nowrap;
-
     border-radius:6px;
 
     font-size:28px;
 
     font-weight:bold;
+
+    white-space:nowrap;
+
+    overflow:hidden;
 }
 
 .blink{
@@ -85,6 +89,29 @@ textarea{
         opacity:0.4;
     }
 
+}
+
+.torna{
+
+    display:block;
+
+    margin-top:15px;
+
+    padding:18px;
+
+    text-align:center;
+
+    background:#3498db;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    font-size:22px;
+
+    font-weight:bold;
 }
 
 </style>
@@ -110,10 +137,29 @@ name="ticker">{{ dati.get('ticker','') }}</textarea>
 
 <label>Colore Sfondo</label>
 
-<input
-type="color"
-name="ticker_bg"
-value="{{ dati.get('ticker_bg','#f39c12') }}">
+<select name="ticker_bg">
+
+<option value="#f39c12" {% if dati.get('ticker_bg','#f39c12') == '#f39c12' %}selected{% endif %}>
+🟨 Giallo
+</option>
+
+<option value="#e74c3c" {% if dati.get('ticker_bg') == '#e74c3c' %}selected{% endif %}>
+🟥 Rosso
+</option>
+
+<option value="#27ae60" {% if dati.get('ticker_bg') == '#27ae60' %}selected{% endif %}>
+🟩 Verde
+</option>
+
+<option value="#3498db" {% if dati.get('ticker_bg') == '#3498db' %}selected{% endif %}>
+🟦 Blu
+</option>
+
+<option value="#000000" {% if dati.get('ticker_bg') == '#000000' %}selected{% endif %}>
+⚫ Nero
+</option>
+
+</select>
 
 </div>
 
@@ -121,31 +167,43 @@ value="{{ dati.get('ticker_bg','#f39c12') }}">
 
 <label>Colore Testo</label>
 
-<input
-type="color"
-name="ticker_fg"
-value="{{ dati.get('ticker_fg','#000000') }}">
+<select name="ticker_fg">
+
+<option value="#000000" {% if dati.get('ticker_fg','#000000') == '#000000' %}selected{% endif %}>
+⚫ Nero
+</option>
+
+<option value="#ffffff" {% if dati.get('ticker_fg') == '#ffffff' %}selected{% endif %}>
+⚪ Bianco
+</option>
+
+<option value="#ffff00" {% if dati.get('ticker_fg') == '#ffff00' %}selected{% endif %}>
+🟨 Giallo
+</option>
+
+<option value="#ff0000" {% if dati.get('ticker_fg') == '#ff0000' %}selected{% endif %}>
+🟥 Rosso
+</option>
+
+</select>
 
 </div>
 
 <div class="card">
 
-<label>Velocità (secondi)</label>
+<label>Velocità Scorrimento</label>
 
 <select name="ticker_speed">
 
-<option value="10"
-{% if dati.get('ticker_speed') == '10' %}selected{% endif %}>
+<option value="10" {% if dati.get('ticker_speed') == '10' %}selected{% endif %}>
 Molto veloce
 </option>
 
-<option value="20"
-{% if dati.get('ticker_speed','20') == '20' %}selected{% endif %}>
+<option value="20" {% if dati.get('ticker_speed','20') == '20' %}selected{% endif %}>
 Media
 </option>
 
-<option value="30"
-{% if dati.get('ticker_speed') == '30' %}selected{% endif %}>
+<option value="30" {% if dati.get('ticker_speed') == '30' %}selected{% endif %}>
 Lenta
 </option>
 
@@ -159,70 +217,4 @@ Lenta
 
 <select name="ticker_blink">
 
-<option value="NO"
-{% if dati.get('ticker_blink','NO') == 'NO' %}selected{% endif %}>
-NO
-</option>
-
-<option value="SI"
-{% if dati.get('ticker_blink') == 'SI' %}selected{% endif %}>
-SI
-</option>
-
-</select>
-
-</div>
-
-<div class="card">
-
-<label>Anteprima</label>
-
-<div
-class="preview {% if dati.get('ticker_blink') == 'SI' %}blink{% endif %}"
-style="
-background:{{ dati.get('ticker_bg','#f39c12') }};
-color:{{ dati.get('ticker_fg','#000000') }};
-">
-
-{{ dati.get('ticker','') }}
-
-</div>
-
-</div>
-
-<button
-class="btn"
-type="submit">
-
-💾 SALVA TICKER
-
-</button>
-
-
-
-<a
-href="/admin"
-style="
-display:block;
-margin-top:15px;
-padding:18px;
-text-align:center;
-background:#3498db;
-color:white;
-text-decoration:none;
-border-radius:10px;
-font-size:22px;
-font-weight:bold;
-">
-
-⬅ TORNA ALLA GESTIONE PISTA
-
-</a>
-
-</form>
-
-</div>
-
-</body>
-
-</html>
+<option value
