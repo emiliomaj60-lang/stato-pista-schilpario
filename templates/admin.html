@@ -185,6 +185,24 @@ FORZA CHIUSA
 </div>
 
 <div class="card">
+<label>Ora apertura pattinaggio</label>
+
+<input
+type="time"
+name="ora_apertura_pattinaggio"
+value="{{ dati.get('ora_apertura_pattinaggio','09:00') }}">
+</div>
+
+<div class="card">
+<label>Ora chiusura pattinaggio</label>
+
+<input
+type="time"
+name="ora_chiusura_pattinaggio"
+value="{{ dati.get('ora_chiusura_pattinaggio','17:00') }}">
+</div>
+
+<div class="card">
 <label>Ora apertura</label>
 
 <input
@@ -265,6 +283,14 @@ value="{{ dati.get('data_battitura','') }}">
 
 <textarea
 name="note">{{ dati.get('note','') }}</textarea>
+</div>
+
+<div class="card">
+<label>Ticker</label>
+
+<textarea
+name="ticker">{{ dati.get('ticker','') }}</textarea>
+
 </div>
 
 <div class="card">
