@@ -87,46 +87,6 @@ textarea{
 <form method="post">
 
 <div class="card">
-
-<label>Stato attuale tabellone</label>
-
-{% if dati.stato == "APERTA" %}
-<div style="
-background:#27ae60;
-padding:15px;
-border-radius:8px;
-text-align:center;
-font-size:24px;
-font-weight:bold;
-">
-🟢 APERTA
-</div>
-{% else %}
-<div style="
-background:#c0392b;
-padding:15px;
-border-radius:8px;
-text-align:center;
-font-size:24px;
-font-weight:bold;
-">
-🔴 CHIUSA
-</div>
-{% endif %}
-
-<p style="margin-top:15px;">
-
-Modalità:
-
-<strong>
-{{ dati.get('modalita','AUTO') }}
-</strong>
-
-</p>
-
-</div>
-
-<div class="card">
 <label>Modalità Pista Fondo</label>
 
 <select name="modalita">
@@ -223,28 +183,19 @@ value="{{ dati.get('ora_chiusura','17:00') }}">
 <div class="card">
 <label>Km aperti</label>
 
-<input
-type="number"
-name="km"
-value="{{ dati.get('km','0') }}">
+<input type="text" name="km" value="{{ dati.get('km','0') }}">
 </div>
 
 <div class="card">
 <label>Temperatura aria</label>
 
-<input
-type="number"
-name="temperatura_aria"
-value="{{ dati.get('temperatura_aria','0') }}">
+<input type="text" name="temperatura_aria" value="{{ dati.get('temperatura_aria','0') }}">
 </div>
 
 <div class="card">
 <label>Temperatura neve</label>
 
-<input
-type="number"
-name="temperatura_neve"
-value="{{ dati.get('temperatura_neve','0') }}">
+<input type="text" name="temperatura_neve" value="{{ dati.get('temperatura_neve','0') }}">
 </div>
 
 <div class="card">
@@ -303,39 +254,74 @@ padding:15px;
 border-radius:8px;
 ">
 
-<p><strong>Stato:</strong>
+<p>
+<strong>Fondo:</strong>
 <span id="preview_stato">
 {{ dati.stato }}
 </span>
 </p>
 
-<p><strong>Km:</strong>
+<p>
+<strong>Pattinaggio:</strong>
+{{ dati.stato_pattinaggio }}
+</p>
+
+<p>
+<strong>Orario Fondo:</strong>
+{{ dati.get('ora_apertura','08:30') }}
+ -
+{{ dati.get('ora_chiusura','17:00') }}
+</p>
+
+<p>
+<strong>Orario Pattinaggio:</strong>
+{{ dati.get('ora_apertura_pattinaggio','09:00') }}
+ -
+{{ dati.get('ora_chiusura_pattinaggio','17:00') }}
+</p>
+
+<p>
+<strong>Km:</strong>
 <span id="preview_km">
 {{ dati.get('km','0') }}
 </span>
 </p>
 
-<p><strong>Aria:</strong>
+<p>
+<strong>Aria:</strong>
 <span id="preview_aria">
 {{ dati.get('temperatura_aria','0') }}
-</span>°
+</span>
 </p>
 
-<p><strong>Neve:</strong>
+<p>
+<strong>Neve:</strong>
 <span id="preview_neve">
 {{ dati.get('temperatura_neve','0') }}
-</span>°
+</span>
 </p>
 
-<p><strong>Battitura:</strong>
+<p>
+<strong>Battitura:</strong>
+
 <span id="preview_battitura">
-{{ dati.get('ultima_battitura','')
-}}
+{{ dati.get('ultima_battitura','') }}
 </span>
 
 <span id="preview_data">
 ({{ dati.get('data_battitura','') }})
 </span>
+
+</p>
+
+<p>
+<strong>Note:</strong>
+{{ dati.get('note','') }}
+</p>
+
+<p>
+<strong>Ticker:</strong>
+{{ dati.get('ticker','') }}
 </p>
 
 </div>
