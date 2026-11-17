@@ -2,13 +2,19 @@
     "km": "12",
     "temperatura_aria": "-2",
     "temperatura_neve": "-5",
+
     "ultima_battitura": "06:30",
     "data_battitura": "15/11/2026",
+
     "modalita": "AUTO",
     "ora_apertura": "08:30",
     "ora_chiusura": "17:00",
-    "note": "Condizioni ottime",
+
+    "modalita_pattinaggio": "AUTO",
     "ora_apertura_pattinaggio": "09:00",
     "ora_chiusura_pattinaggio": "17:00",
-    "modalita_pattinaggio": "AUTO"
+
+    "note": "Condizioni ottime",
+
+    "ticker": ""
 }

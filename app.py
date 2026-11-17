@@ -19,7 +19,6 @@ FILE_DATI = "dati.json"
 
 PASSWORD_ADMIN = "s"
 
-
 def carica_dati():
 
     with open(FILE_DATI, "r", encoding="utf-8") as f:
@@ -34,6 +33,26 @@ def carica_dati():
     dati.setdefault("ora_apertura", "08:30")
     dati.setdefault("ora_chiusura", "17:00")
     dati.setdefault("note", "")
+
+    dati.setdefault(
+        "modalita_pattinaggio",
+        "AUTO"
+    )
+
+    dati.setdefault(
+        "ora_apertura_pattinaggio",
+        "09:00"
+    )
+
+    dati.setdefault(
+        "ora_chiusura_pattinaggio",
+        "17:00"
+    )
+
+    dati.setdefault(
+        "ticker",
+        ""
+    )
 
     return dati
 
@@ -104,7 +123,41 @@ def stato_pattinaggio(dati):
     if modalita == "FORZA_CHIUSA":
         return "CHIUSA"
 
-    return stato_effettivo(dati)
+    try:
+
+        apertura = datetime.strptime(
+            dati.get(
+                "ora_apertura_pattinaggio",
+                "09:00"
+            ),
+            "%H:%M"
+        ).time()
+
+        chiusura = datetime.strptime(
+            dati.get(
+                "ora_chiusura_pattinaggio",
+                "17:00"
+            ),
+            "%H:%M"
+        ).time()
+
+        ora_attuale = datetime.now(
+            ZoneInfo("Europe/Rome")
+        ).time()
+
+        if apertura <= ora_attuale <= chiusura:
+            return "APERTA"
+
+        return "CHIUSA"
+
+    except Exception as e:
+
+        print(
+            "ERRORE ORARI PATTINAGGIO:",
+            e
+        )
+
+        return "CHIUSA"
 
 @app.route("/")
 def home():
@@ -170,11 +223,6 @@ def admin():
 
     if request.method == "POST":
 
-        dati["modalita_pattinaggio"] = request.form.get(
-            "modalita_pattinaggio",
-            "AUTO"
-        )
-
         dati["modalita"] = request.form.get(
             "modalita",
             "AUTO"
@@ -187,6 +235,21 @@ def admin():
 
         dati["ora_chiusura"] = request.form.get(
             "ora_chiusura",
+            "17:00"
+        )
+
+        dati["modalita_pattinaggio"] = request.form.get(
+            "modalita_pattinaggio",
+            "AUTO"
+        )
+
+        dati["ora_apertura_pattinaggio"] = request.form.get(
+            "ora_apertura_pattinaggio",
+            "09:00"
+        )
+
+        dati["ora_chiusura_pattinaggio"] = request.form.get(
+            "ora_chiusura_pattinaggio",
             "17:00"
         )
 
@@ -220,9 +283,15 @@ def admin():
             ""
         )
 
+        dati["ticker"] = request.form.get(
+            "ticker",
+            ""
+        )
+
         salva_dati(dati)
 
         dati["stato"] = stato_effettivo(dati)
+        dati["stato_pattinaggio"] = stato_pattinaggio(dati)
 
         return render_template(
             "admin.html",
@@ -230,6 +299,7 @@ def admin():
         )
 
     dati["stato"] = stato_effettivo(dati)
+    dati["stato_pattinaggio"] = stato_pattinaggio(dati)
 
     return render_template(
         "admin.html",
