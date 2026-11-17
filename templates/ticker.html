@@ -53,13 +53,6 @@ body{
         scorri {{ dati.get('ticker_speed','20') }}s linear infinite;
 }
 
-.blink{
-
-    animation:
-        scorri {{ dati.get('ticker_speed','20') }}s linear infinite,
-        lampeggia 1s infinite;
-}
-
 @keyframes scorri{
 
     from{
@@ -72,7 +65,31 @@ body{
 
 }
 
-@keyframes lampeggia{
+.lampeggio{
+    animation:
+        scorri var(--velocita) linear infinite,
+        blink 1s infinite;
+}
+
+.pulsazione{
+    animation:
+        scorri var(--velocita) linear infinite,
+        pulse 1.2s infinite;
+}
+
+.zoom{
+    animation:
+        scorri var(--velocita) linear infinite,
+        zoom 1.5s infinite;
+}
+
+.emergenza{
+    animation:
+        scorri var(--velocita) linear infinite,
+        emergency 0.8s infinite;
+}
+
+@keyframes blink{
 
     50%{
         opacity:0.3;
@@ -80,6 +97,37 @@ body{
 
 }
 
+@keyframes pulse{
+
+    50%{
+        transform:scale(1.08);
+    }
+
+}
+
+@keyframes zoom{
+
+    50%{
+        transform:scale(1.2);
+    }
+
+}
+
+@keyframes emergency{
+
+    0%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:0.1;
+    }
+
+    100%{
+        opacity:1;
+    }
+
+}
 </style>
 
 </head>
@@ -88,7 +136,17 @@ body{
 
 <div class="ticker">
 
-    <div class="testo {% if dati.get('ticker_blink','NO') == 'SI' %}blink{% endif %}">
+    <div
+    class="
+    testo
+    {% if dati.get('ticker_animazione') == 'LAMPEGGIO' %}lampeggio{% endif %}
+    {% if dati.get('ticker_animazione') == 'PULSAZIONE' %}pulsazione{% endif %}
+    {% if dati.get('ticker_animazione') == 'ZOOM' %}zoom{% endif %}
+    {% if dati.get('ticker_animazione') == 'EMERGENZA' %}emergenza{% endif %}
+    "
+    style="
+    --velocita:{{ dati.get('ticker_speed','20') }}s;
+    ">
 
         {{ dati.get('ticker','') }}
 

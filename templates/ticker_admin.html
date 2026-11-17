@@ -195,16 +195,54 @@ name="ticker">{{ dati.get('ticker','') }}</textarea>
 
 <select name="ticker_speed">
 
-<option value="10" {% if dati.get('ticker_speed') == '10' %}selected{% endif %}>
+<option value="10"
+{% if dati.get('ticker_speed') == '10' %}selected{% endif %}>
 Molto veloce
 </option>
 
-<option value="20" {% if dati.get('ticker_speed','20') == '20' %}selected{% endif %}>
+<option value="20"
+{% if dati.get('ticker_speed','20') == '20' %}selected{% endif %}>
 Media
 </option>
 
-<option value="30" {% if dati.get('ticker_speed') == '30' %}selected{% endif %}>
+<option value="30"
+{% if dati.get('ticker_speed') == '30' %}selected{% endif %}>
 Lenta
+</option>
+
+</select>
+
+</div>
+
+<div class="card">
+
+<label>Animazione</label>
+
+<select name="ticker_animazione">
+
+<option value="NESSUNA"
+{% if dati.get('ticker_animazione','NESSUNA') == 'NESSUNA' %}selected{% endif %}>
+Nessuna
+</option>
+
+<option value="LAMPEGGIO"
+{% if dati.get('ticker_animazione') == 'LAMPEGGIO' %}selected{% endif %}>
+Lampeggio
+</option>
+
+<option value="PULSAZIONE"
+{% if dati.get('ticker_animazione') == 'PULSAZIONE' %}selected{% endif %}>
+Pulsazione
+</option>
+
+<option value="ZOOM"
+{% if dati.get('ticker_animazione') == 'ZOOM' %}selected{% endif %}>
+Zoom
+</option>
+
+<option value="EMERGENZA"
+{% if dati.get('ticker_animazione') == 'EMERGENZA' %}selected{% endif %}>
+Emergenza
 </option>
 
 </select>
@@ -217,11 +255,13 @@ Lenta
 
 <select name="ticker_blink">
 
-<option value="NO" {% if dati.get('ticker_blink','NO') == 'NO' %}selected{% endif %}>
+<option value="NO"
+{% if dati.get('ticker_blink','NO') == 'NO' %}selected{% endif %}>
 NO
 </option>
 
-<option value="SI" {% if dati.get('ticker_blink') == 'SI' %}selected{% endif %}>
+<option value="SI"
+{% if dati.get('ticker_blink') == 'SI' %}selected{% endif %}>
 SI
 </option>
 
