@@ -239,26 +239,6 @@ Evidenziazione
 
 </div>
 
-<div class="card">
-
-<label>Lampeggio</label>
-
-<select name="ticker_blink">
-
-<option value="NO"
-{% if dati.get('ticker_blink','NO') == 'NO' %}selected{% endif %}>
-NO
-</option>
-
-<option value="SI"
-{% if dati.get('ticker_blink') == 'SI' %}selected{% endif %}>
-SI
-</option>
-
-</select>
-
-</div>
-
 <button
 class="btn"
 type="submit">
