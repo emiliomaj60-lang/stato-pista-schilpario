@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Gestione Stato Pista</title>
+
+<style>
+
+body{
+    background:#0d1b2a;
+    font-family:Arial,sans-serif;
+    margin:0;
+    padding:20px;
+    color:white;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+}
+
+h1{
+    text-align:center;
+}
+
+.card{
+    background:#1b263b;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:12px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+input,
+select,
+textarea{
+    width:100%;
+    box-sizing:border-box;
+    padding:12px;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+}
+
+textarea{
+    min-height:90px;
+}
+
+.btn{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:10px;
+    font-size:22px;
+    font-weight:bold;
+    background:#27ae60;
+    color:white;
+    cursor:pointer;
+}
+
+.logout{
+    display:block;
+    margin-top:20px;
+    text-align:center;
+    color:white;
+    text-decoration:none;
+}
+@keyframes blink{
+
+    50%{
+        opacity:0.4;
+    }
+
+}
+.blink{
+    animation: blink 1s infinite;
+}
+
+@keyframes blink{
+
+    0%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:0.3;
+    }
+
+    100%{
+        opacity:1;
+    }
+
+}
+.ticker-preview{
+
+    white-space:nowrap;
+
+    font-size:24px;
+
+    font-weight:bold;
+
+    padding-left:100%;
+
+    animation:
+        tickerScroll 20s linear infinite;
+}
+
+.blink{
+
+    animation:
+        tickerScroll 20s linear infinite,
+        blink 1s infinite;
+}
+
+@keyframes tickerScroll{
+
+    from{
+        transform:translateX(0);
+    }
+
+    to{
+        transform:translateX(-100%);
+    }
+
+}
+
+@keyframes blink{
+
+    0%{
+        opacity:1;
+    }
+
+    50%{
+        opacity:0.3;
+    }
+
+    100%{
+        opacity:1;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎿 Gestione Stato Pista</h1>
+
+<form method="post">
+
+<div class="card">
+<label>Modalità Pista Fondo</label>
+
+<select name="modalita">
+
+<option value="AUTO"
+{% if dati.get('modalita','AUTO') == 'AUTO' %}
+selected
+{% endif %}>
+AUTO
+</option>
+
+<option value="FORZA_APERTA"
+{% if dati.get('modalita','AUTO') == 'FORZA_APERTA' %}
+selected
+{% endif %}>
+FORZA APERTA
+</option>
+
+<option value="FORZA_CHIUSA"
+{% if dati.get('modalita','AUTO') == 'FORZA_CHIUSA' %}
+selected
+{% endif %}>
+FORZA CHIUSA
+</option>
+
+</select>
+</div>
+
+<div class="card">
+<label>Modalità Pattinaggio</label>
+
+<select name="modalita_pattinaggio">
+
+<option value="AUTO"
+{% if dati.get('modalita_pattinaggio','AUTO') == 'AUTO' %}
+selected
+{% endif %}>
+AUTO
+</option>
+
+<option value="FORZA_APERTA"
+{% if dati.get('modalita_pattinaggio','AUTO') == 'FORZA_APERTA' %}
+selected
+{% endif %}>
+FORZA APERTA
+</option>
+
+<option value="FORZA_CHIUSA"
+{% if dati.get('modalita_pattinaggio','AUTO') == 'FORZA_CHIUSA' %}
+selected
+{% endif %}>
+FORZA CHIUSA
+</option>
+
+</select>
+</div>
+
+<div class="card">
+<label>Ora apertura pattinaggio</label>
+
+<input
+type="time"
+name="ora_apertura_pattinaggio"
+value="{{ dati.get('ora_apertura_pattinaggio','09:00') }}">
+</div>
+
+<div class="card">
+<label>Ora chiusura pattinaggio</label>
+
+<input
+type="time"
+name="ora_chiusura_pattinaggio"
+value="{{ dati.get('ora_chiusura_pattinaggio','17:00') }}">
+</div>
+
+<div class="card">
+<label>Ora apertura Pista fondo</label>
+
+<input
+type="time"
+name="ora_apertura"
+value="{{ dati.get('ora_apertura','08:30') }}">
+</div>
+
+<div class="card">
+<label>Ora chiusura Pista fondo</label>
+
+<input
+type="time"
+name="ora_chiusura"
+value="{{ dati.get('ora_chiusura','17:00') }}">
+</div>
+
+<div class="card">
+<label>Km aperti</label>
+
+<input type="text" name="km" value="{{ dati.get('km','0') }}">
+</div>
+
+<div class="card">
+<label>Temperatura aria</label>
+
+<input type="text" name="temperatura_aria" value="{{ dati.get('temperatura_aria','0') }}">
+</div>
+
+<div class="card">
+<label>Temperatura neve</label>
+
+<input type="text" name="temperatura_neve" value="{{ dati.get('temperatura_neve','0') }}">
+</div>
+
+<div class="card">
+<label>Ora battitura</label>
+
+<input
+type="text"
+name="ultima_battitura"
+value="{{ dati.get('ultima_battitura','06:30') }}">
+</div>
+
+<div class="card">
+
+<button
+type="button"
+class="btn"
+onclick="impostaAdesso()">
+
+🕒 ADESSO
+
+</button>
+
+</div>
+
+<div class="card">
+<label>Data battitura</label>
+
+<input
+type="text"
+name="data_battitura"
+value="{{ dati.get('data_battitura','') }}">
+</div>
+
+<div class="card">
+<label>Note</label>
+
+<textarea
+name="note">{{ dati.get('note','') }}</textarea>
+</div>
+
+<div class="card">
+
+<label>Anteprima Ticker</label>
+
+<div
+style="
+background:{{ dati.get('ticker_bg','#f39c12') }};
+color:{{ dati.get('ticker_fg','#000000') }};
+height:60px;
+overflow:hidden;
+border-radius:8px;
+display:flex;
+align-items:center;
+">
+
+<div
+class="
+ticker-preview
+{% if dati.get('ticker_blink') == 'SI' %}
+blink
+{% endif %}
+"
+style="
+animation-duration:{{ dati.get('ticker_speed','20') }}s;
+">
+
+📢 {{ dati.get('ticker','NESSUN MESSAGGIO IMPOSTATO') }}
+
+</div>
+
+</div>
+
+<a
+href="/ticker_admin"
+style="
+display:block;
+margin-top:12px;
+padding:15px;
+text-align:center;
+background:#3498db;
+color:white;
+text-decoration:none;
+border-radius:8px;
+font-size:20px;
+font-weight:bold;
+">
+
+⚙️ MODIFICA TICKER
+
+</a>
+
+</div>
+
+<div class="card">
+
+<label>Anteprima Tabellone</label>
+
+<div style="
+background:#0d1b2a;
+padding:15px;
+border-radius:8px;
+">
+
+<p>
+<strong>Fondo:</strong>
+<span id="preview_stato">
+{{ dati.stato }}
+</span>
+</p>
+
+<p>
+<strong>Pattinaggio:</strong>
+{{ dati.stato_pattinaggio }}
+</p>
+
+<p>
+<strong>Orario Fondo:</strong>
+{{ dati.get('ora_apertura','08:30') }}
+ -
+{{ dati.get('ora_chiusura','17:00') }}
+</p>
+
+<p>
+<strong>Orario Pattinag:</strong>
+{{ dati.get('ora_apertura_pattinaggio','09:00') }}
+ -
+{{ dati.get('ora_chiusura_pattinaggio','17:00') }}
+</p>
+
+<p>
+<strong>Km:</strong>
+<span id="preview_km">
+{{ dati.get('km','0') }}
+</span>
+</p>
+
+<p>
+<strong>Aria:</strong>
+<span id="preview_aria">
+{{ dati.get('temperatura_aria','0') }}
+</span>
+</p>
+
+<p>
+<strong>Neve:</strong>
+<span id="preview_neve">
+{{ dati.get('temperatura_neve','0') }}
+</span>
+</p>
+
+<p>
+<strong>Battitura:</strong>
+
+<span id="preview_battitura">
+{{ dati.get('ultima_battitura','') }}
+</span>
+
+<span id="preview_data">
+({{ dati.get('data_battitura','') }})
+</span>
+
+</p>
+
+<p>
+<strong>Note:</strong>
+{{ dati.get('note','') }}
+</p>
+
+<p>
+<strong>Riga scor.:</strong>
+{{ dati.get('ticker','') }}
+</p>
+
+</div>
+
+</div>
+
+<button class="btn" type="submit">
+💾 SALVA
+</button>
+
+</form>
+
+<a class="logout" href="/logout">
+🚪 Logout
+</a>
+
+</div>
+
+<script>
+
+function impostaAdesso() {
+
+    const adesso = new Date();
+
+    const ore =
+        String(adesso.getHours()).padStart(2, "0");
+
+    const minuti =
+        String(adesso.getMinutes()).padStart(2, "0");
+
+    const giorno =
+        String(adesso.getDate()).padStart(2, "0");
+
+    const mese =
+        String(adesso.getMonth() + 1).padStart(2, "0");
+
+    const anno =
+        adesso.getFullYear();
+
+    document.querySelector(
+        'input[name="ultima_battitura"]'
+    ).value =
+        ore + ":" + minuti;
+
+    document.querySelector(
+        'input[name="data_battitura"]'
+    ).value =
+        giorno + "/" + mese + "/" + anno;
+}
+
+</script>
+
+<script>
+
+function aggiornaAnteprima(){
+
+    document.getElementById("preview_km").textContent =
+        document.querySelector(
+            '[name="km"]'
+        ).value;
+
+    document.getElementById("preview_aria").textContent =
+        document.querySelector(
+            '[name="temperatura_aria"]'
+        ).value;
+
+    document.getElementById("preview_neve").textContent =
+        document.querySelector(
+            '[name="temperatura_neve"]'
+        ).value;
+
+    document.getElementById("preview_battitura").textContent =
+        document.querySelector(
+            '[name="ultima_battitura"]'
+        ).value;
+
+    document.getElementById("preview_data").textContent =
+        "(" +
+        document.querySelector(
+            '[name="data_battitura"]'
+        ).value +
+        ")";
+}
+
+document
+.querySelectorAll("input, select, textarea")
+.forEach(el => {
+    el.addEventListener(
+        "input",
+        aggiornaAnteprima
+    );
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Gestione Ticker</title>
+
+<style>
+
+body{
+    background:#0d1b2a;
+    color:white;
+    font-family:Arial,sans-serif;
+    padding:20px;
+}
+
+.container{
+    max-width:700px;
+    margin:auto;
+}
+
+.card{
+    background:#1b263b;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:12px;
+}
+
+label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:8px;
+}
+
+select,
+textarea{
+    width:100%;
+    padding:12px;
+    font-size:18px;
+    border:none;
+    border-radius:8px;
+    box-sizing:border-box;
+}
+
+textarea{
+    min-height:120px;
+}
+
+.btn{
+    width:100%;
+    padding:18px;
+    border:none;
+    border-radius:10px;
+    background:#27ae60;
+    color:white;
+    font-size:22px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.preview{
+
+    margin-top:10px;
+
+    padding:15px;
+
+    border-radius:6px;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+}
+
+.blink{
+
+    animation: blink 1s infinite;
+}
+
+@keyframes blink{
+
+    50%{
+        opacity:0.4;
+    }
+
+}
+
+.torna{
+
+    display:block;
+
+    margin-top:15px;
+
+    padding:18px;
+
+    text-align:center;
+
+    background:#3498db;
+
+    color:white;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    font-size:22px;
+
+    font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<form method="post">
+
+<div class="card">
+
+<label>Messaggio Ticker</label>
+
+<textarea
+name="ticker">{{ dati.get('ticker','') }}</textarea>
+
+</div>
+
+<div class="card">
+
+<label>Colore Sfondo</label>
+
+<select name="ticker_bg">
+
+<option value="#f39c12" {% if dati.get('ticker_bg','#f39c12') == '#f39c12' %}selected{% endif %}>
+🟨 Giallo
+</option>
+
+<option value="#e74c3c" {% if dati.get('ticker_bg') == '#e74c3c' %}selected{% endif %}>
+🟥 Rosso
+</option>
+
+<option value="#27ae60" {% if dati.get('ticker_bg') == '#27ae60' %}selected{% endif %}>
+🟩 Verde
+</option>
+
+<option value="#3498db" {% if dati.get('ticker_bg') == '#3498db' %}selected{% endif %}>
+🟦 Blu
+</option>
+
+<option value="#000000" {% if dati.get('ticker_bg') == '#000000' %}selected{% endif %}>
+⚫ Nero
+</option>
+
+</select>
+
+</div>
+
+<div class="card">
+
+<label>Colore Testo</label>
+
+<select name="ticker_fg">
+
+<option value="#000000" {% if dati.get('ticker_fg','#000000') == '#000000' %}selected{% endif %}>
+⚫ Nero
+</option>
+
+<option value="#ffffff" {% if dati.get('ticker_fg') == '#ffffff' %}selected{% endif %}>
+⚪ Bianco
+</option>
+
+<option value="#ffff00" {% if dati.get('ticker_fg') == '#ffff00' %}selected{% endif %}>
+🟨 Giallo
+</option>
+
+<option value="#ff0000" {% if dati.get('ticker_fg') == '#ff0000' %}selected{% endif %}>
+🟥 Rosso
+</option>
+
+</select>
+
+</div>
+
+<div class="card">
+
+<label>Velocità Scorrimento</label>
+
+<select name="ticker_speed">
+
+<option value="10" {% if dati.get('ticker_speed') == '10' %}selected{% endif %}>
+Molto veloce
+</option>
+
+<option value="20" {% if dati.get('ticker_speed','20') == '20' %}selected{% endif %}>
+Media
+</option>
+
+<option value="30" {% if dati.get('ticker_speed') == '30' %}selected{% endif %}>
+Lenta
+</option>
+
+</select>
+
+</div>
+
+<div class="card">
+
+<label>Lampeggio</label>
+
+<select name="ticker_blink">
+
+<option value="NO" {% if dati.get('ticker_blink','NO') == 'NO' %}selected{% endif %}>
+NO
+</option>
+
+<option value="SI" {% if dati.get('ticker_blink') == 'SI' %}selected{% endif %}>
+SI
+</option>
+
+</select>
+
+</div>
+
+<button
+class="btn"
+type="submit">
+
+💾 SALVA TICKER
+
+</button>
+
+<a
+href="/admin"
+class="torna">
+
+⬅ TORNA ALLA GESTIONE PISTA
+
+</a>
+
+</form>
+
+</div>
+
+</body>
+
+</html>
