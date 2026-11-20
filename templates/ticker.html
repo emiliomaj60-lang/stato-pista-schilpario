@@ -78,7 +78,7 @@ body{
 
 .scritta{
 
-    font-size:36px;
+    font-size:48px;
     font-weight:bold;
 
     color:{{ dati.get('ticker_fg','#000000') }};
@@ -93,23 +93,29 @@ body{
 <div class="ticker">
 
 <marquee
+
 behavior="scroll"
+
 direction="left"
 
+scrolldelay="20"
+
 {% if dati.get('ticker_speed','20') == '10' %}
-scrollamount="12"
-{% elif dati.get('ticker_speed','20') == '30' %}
+
 scrollamount="4"
+
+{% elif dati.get('ticker_speed','20') == '30' %}
+
+scrollamount="1"
+
 {% else %}
-scrollamount="8"
+
+scrollamount="2"
+
 {% endif %}
 
 class="scritta"
 >
-
-{{ dati.get('ticker') or 'NESSUN MESSAGGIO' }}
-
-</marquee>
 
 </div>
 
