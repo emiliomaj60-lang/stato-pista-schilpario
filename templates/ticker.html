@@ -90,7 +90,7 @@ body{
 
 <body>
 
-<div class="ticker">
+<<div class="ticker">
 
 <marquee
 
@@ -98,24 +98,27 @@ behavior="scroll"
 
 direction="left"
 
-scrolldelay="20"
-
 {% if dati.get('ticker_speed','20') == '10' %}
 
-scrollamount="4"
+scrollamount="6"
 
 {% elif dati.get('ticker_speed','20') == '30' %}
 
-scrollamount="1"
+scrollamount="2"
 
 {% else %}
 
-scrollamount="2"
+scrollamount="3"
 
 {% endif %}
 
 class="scritta"
+
 >
+
+{{ dati.get('ticker') or 'NESSUN MESSAGGIO' }}
+
+</marquee>
 
 </div>
 
