@@ -68,94 +68,20 @@ body{
 }
 
 .ticker{
+
     width:100%;
     height:100%;
 
-    position:relative;
-
-    overflow:hidden;
+    display:flex;
+    align-items:center;
 }
 
-.testo{
-
-    position:absolute;
-
-    top:5px;
-    left:0;
+.scritta{
 
     font-size:36px;
     font-weight:bold;
 
     color:{{ dati.get('ticker_fg','#000000') }};
-
-    padding-left:100%;
-
-    animation:
-        scorri var(--velocita) linear infinite;
-}
-
-.lampeggio{
-
-    animation:
-        scorri var(--velocita) linear infinite,
-        blink 1s infinite;
-}
-
-.evidenziazione{
-
-    animation:
-        scorri var(--velocita) linear infinite,
-        evidenzia 1s infinite;
-}
-
-/* SCORRIMENTO */
-
-@keyframes scorri{
-
-    from{
-        transform:translateX(0);
-    }
-
-    to{
-        transform:translateX(-100%);
-    }
-
-}
-
-/* LAMPEGGIO */
-
-@keyframes blink{
-
-    0%{
-        opacity:1;
-    }
-
-    50%{
-        opacity:0.3;
-    }
-
-    100%{
-        opacity:1;
-    }
-
-}
-
-/* EVIDENZIAZIONE */
-
-@keyframes evidenzia{
-
-    0%{
-        filter:none;
-    }
-
-    50%{
-        filter:brightness(180%);
-    }
-
-    100%{
-        filter:none;
-    }
-
 }
 
 </style>
@@ -164,19 +90,26 @@ body{
 
 <body>
 
-<div
-style="
-width:100%;
-height:100%;
-display:flex;
-justify-content:center;
-align-items:center;
-font-size:36px;
-font-weight:bold;
-color:red;
-">
+<div class="ticker">
 
-TEST TICKER SCHILPARIO
+<marquee
+behavior="scroll"
+direction="left"
+
+{% if dati.get('ticker_speed','20') == '10' %}
+scrollamount="12"
+{% elif dati.get('ticker_speed','20') == '30' %}
+scrollamount="4"
+{% else %}
+scrollamount="8"
+{% endif %}
+
+class="scritta"
+>
+
+{{ dati.get('ticker') or 'NESSUN MESSAGGIO' }}
+
+</marquee>
 
 </div>
 
