@@ -79,9 +79,11 @@ body{
 .scritta{
 
     font-size:48px;
+
     font-weight:bold;
 
     color:{{ dati.get('ticker_fg','#000000') }};
+
 }
 
 </style>
@@ -90,7 +92,7 @@ body{
 
 <body>
 
-<<div class="ticker">
+<div class="ticker">
 
 <marquee
 
@@ -99,17 +101,11 @@ behavior="scroll"
 direction="left"
 
 {% if dati.get('ticker_speed','20') == '10' %}
-
 scrollamount="6"
-
 {% elif dati.get('ticker_speed','20') == '30' %}
-
 scrollamount="2"
-
 {% else %}
-
 scrollamount="3"
-
 {% endif %}
 
 class="scritta"
