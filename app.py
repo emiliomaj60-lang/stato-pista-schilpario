@@ -45,7 +45,6 @@ def carica_dati():
     dati.setdefault("ticker_bg", "#f39c12")
     dati.setdefault("ticker_fg", "#000000")
     dati.setdefault("ticker_speed", "20")
-    dati.setdefault("ticker_animazione", "NESSUNA")
 
     return dati
 
@@ -344,11 +343,6 @@ def ticker_admin():
         dati["ticker_speed"] = request.form.get(
             "ticker_speed",
             "20"
-        )
-
-        dati["ticker_animazione"] = request.form.get(
-            "ticker_animazione",
-            "NESSUNA"
         )
 
         salva_dati(dati)
