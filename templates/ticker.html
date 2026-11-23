@@ -78,7 +78,7 @@ body{
 
 .scritta{
 
-    font-size:48px;
+    font-size:60px;
 
     font-weight:bold;
 
@@ -101,11 +101,11 @@ behavior="scroll"
 direction="left"
 
 {% if dati.get('ticker_speed','20') == '10' %}
-scrollamount="6"
+scrollamount="20"
 {% elif dati.get('ticker_speed','20') == '30' %}
-scrollamount="2"
+scrollamount="6"
 {% else %}
-scrollamount="3"
+scrollamount="12"
 {% endif %}
 
 class="scritta"
