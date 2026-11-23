@@ -61,56 +61,16 @@ textarea{
     cursor:pointer;
 }
 
-.preview{
-
-    margin-top:10px;
-
-    padding:15px;
-
-    border-radius:6px;
-
-    font-size:28px;
-
-    font-weight:bold;
-
-    white-space:nowrap;
-
-    overflow:hidden;
-}
-
-.blink{
-
-    animation: blink 1s infinite;
-}
-
-@keyframes blink{
-
-    50%{
-        opacity:0.4;
-    }
-
-}
-
 .torna{
-
     display:block;
-
     margin-top:15px;
-
     padding:18px;
-
     text-align:center;
-
     background:#3498db;
-
     color:white;
-
     text-decoration:none;
-
     border-radius:10px;
-
     font-size:22px;
-
     font-weight:bold;
 }
 
@@ -128,8 +88,7 @@ textarea{
 
 <label>Messaggio Ticker</label>
 
-<textarea
-name="ticker">{{ dati.get('ticker','') }}</textarea>
+<textarea name="ticker">{{ dati.get('ticker','') }}</textarea>
 
 </div>
 
@@ -139,19 +98,23 @@ name="ticker">{{ dati.get('ticker','') }}</textarea>
 
 <select name="ticker_bg">
 
-<option value="#f39c12" {% if dati.get('ticker_bg','#f39c12') == '#f39c12' %}selected{% endif %}>
+<option value="#f39c12"
+{% if dati.get('ticker_bg','#f39c12') == '#f39c12' %}selected{% endif %}>
 🟨 Giallo
 </option>
 
-<option value="#e74c3c" {% if dati.get('ticker_bg') == '#e74c3c' %}selected{% endif %}>
+<option value="#e74c3c"
+{% if dati.get('ticker_bg') == '#e74c3c' %}selected{% endif %}>
 🟥 Rosso
 </option>
 
-<option value="#27ae60" {% if dati.get('ticker_bg') == '#27ae60' %}selected{% endif %}>
+<option value="#27ae60"
+{% if dati.get('ticker_bg') == '#27ae60' %}selected{% endif %}>
 🟩 Verde
 </option>
 
-<option value="#3498db" {% if dati.get('ticker_bg') == '#3498db' %}selected{% endif %}>
+<option value="#3498db"
+{% if dati.get('ticker_bg') == '#3498db' %}selected{% endif %}>
 🟦 Blu
 </option>
 
@@ -160,28 +123,29 @@ name="ticker">{{ dati.get('ticker','') }}</textarea>
 ⬜ Grigio
 </option>
 
-<option value="#000000" {% if dati.get('ticker_bg') == '#000000' %}selected{% endif %}>
+<option value="#000000"
+{% if dati.get('ticker_bg') == '#000000' %}selected{% endif %}>
 ⚫ Nero
 </option>
 
-<option value="GRADIENTE_BLU">
+<option value="GRADIENTE_BLU"
+{% if dati.get('ticker_bg') == 'GRADIENTE_BLU' %}selected{% endif %}>
 🔵 Gradiente Blu
 </option>
 
-<option value="GRADIENTE_ROSSO">
+<option value="GRADIENTE_ROSSO"
+{% if dati.get('ticker_bg') == 'GRADIENTE_ROSSO' %}selected{% endif %}>
 🔴 Gradiente Rosso
 </option>
 
-<option value="GRADIENTE_VERDE">
+<option value="GRADIENTE_VERDE"
+{% if dati.get('ticker_bg') == 'GRADIENTE_VERDE' %}selected{% endif %}>
 🟢 Gradiente Verde
 </option>
 
-<option value="NERO_ROSSO">
+<option value="NERO_ROSSO"
+{% if dati.get('ticker_bg') == 'NERO_ROSSO' %}selected{% endif %}>
 ⚫🔴 Nero/Rosso
-</option>
-
-<option value="ARCOBALENO">
-🌈 Arcobaleno
 </option>
 
 </select>
@@ -194,19 +158,23 @@ name="ticker">{{ dati.get('ticker','') }}</textarea>
 
 <select name="ticker_fg">
 
-<option value="#000000" {% if dati.get('ticker_fg','#000000') == '#000000' %}selected{% endif %}>
+<option value="#000000"
+{% if dati.get('ticker_fg','#000000') == '#000000' %}selected{% endif %}>
 ⚫ Nero
 </option>
 
-<option value="#ffffff" {% if dati.get('ticker_fg') == '#ffffff' %}selected{% endif %}>
+<option value="#ffffff"
+{% if dati.get('ticker_fg') == '#ffffff' %}selected{% endif %}>
 ⚪ Bianco
 </option>
 
-<option value="#ffff00" {% if dati.get('ticker_fg') == '#ffff00' %}selected{% endif %}>
+<option value="#ffff00"
+{% if dati.get('ticker_fg') == '#ffff00' %}selected{% endif %}>
 🟨 Giallo
 </option>
 
-<option value="#ff0000" {% if dati.get('ticker_fg') == '#ff0000' %}selected{% endif %}>
+<option value="#ff0000"
+{% if dati.get('ticker_fg') == '#ff0000' %}selected{% endif %}>
 🟥 Rosso
 </option>
 
