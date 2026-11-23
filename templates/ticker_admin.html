@@ -155,6 +155,11 @@ name="ticker">{{ dati.get('ticker','') }}</textarea>
 🟦 Blu
 </option>
 
+<option value="#808080"
+{% if dati.get('ticker_bg') == '#808080' %}selected{% endif %}>
+⬜ Grigio
+</option>
+
 <option value="#000000" {% if dati.get('ticker_bg') == '#000000' %}selected{% endif %}>
 ⚫ Nero
 </option>
@@ -228,31 +233,6 @@ Media
 <option value="30"
 {% if dati.get('ticker_speed') == '30' %}selected{% endif %}>
 Lenta
-</option>
-
-</select>
-
-</div>
-
-<div class="card">
-
-<label>Animazione</label>
-
-<select name="ticker_animazione">
-
-<option value="NESSUNA"
-{% if dati.get('ticker_animazione','NESSUNA') == 'NESSUNA' %}selected{% endif %}>
-Nessuna
-</option>
-
-<option value="LAMPEGGIO"
-{% if dati.get('ticker_animazione') == 'LAMPEGGIO' %}selected{% endif %}>
-Lampeggio
-</option>
-
-<option value="EVIDENZIAZIONE"
-{% if dati.get('ticker_animazione') == 'EVIDENZIAZIONE' %}selected{% endif %}>
-Evidenziazione
 </option>
 
 </select>
