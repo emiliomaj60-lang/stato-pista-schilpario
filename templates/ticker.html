@@ -54,26 +54,18 @@ body{
     width:100%;
     height:100%;
 
-    overflow:hidden;
-
-    position:relative;
+    display:flex;
+    align-items:center;
 }
 
 .scritta{
 
-    position:absolute;
-
-    top:2px;
-
-    left:100%;
-
-    white-space:nowrap;
-
-    font-size:46px;
+    font-size:48px;
 
     font-weight:bold;
 
     color:{{ dati.get('ticker_fg','#000000') }};
+
 }
 
 </style>
@@ -84,37 +76,29 @@ body{
 
 <div class="ticker">
 
-    <div id="scritta" class="scritta">
+<marquee
 
-        {{ dati.get('ticker') or 'NESSUN MESSAGGIO' }}
+behavior="scroll"
 
-    </div>
+direction="left"
+
+{% if dati.get('ticker_speed','20') == '10' %}
+scrollamount="20"
+{% elif dati.get('ticker_speed','20') == '30' %}
+scrollamount="6"
+{% else %}
+scrollamount="12"
+{% endif %}
+
+class="scritta"
+
+>
+
+{{ dati.get('ticker') or 'NESSUN MESSAGGIO' }}
+
+</marquee>
 
 </div>
-
-<script>
-
-const scritta = document.getElementById("scritta");
-
-let pos = window.innerWidth;
-
-function anima() {
-
-    pos = pos - 2;
-
-    scritta.style.left = pos + "px";
-
-    if (pos < -scritta.offsetWidth) {
-
-        pos = window.innerWidth;
-
-    }
-
-    requestAnimationFrame(anima);
-}
-
-anima();
-
 </script>
 
 </body>
