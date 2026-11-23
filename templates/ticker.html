@@ -63,17 +63,17 @@ body{
 
     position:absolute;
 
-    top:50%;
+    top:2px;
+
+    left:0;
 
     white-space:nowrap;
 
-    font-size:60px;
+    font-size:46px;
 
     font-weight:bold;
 
     color:{{ dati.get('ticker_fg','#000000') }};
-
-    transform:translateY(-50%);
 }
 
 </style>
@@ -103,7 +103,7 @@ function anima(){
     pos -= 3;
 
     scritta.style.transform =
-        `translate(${pos}px,-50%)`;
+        `translateX(${pos}px)`;
 
     const larghezza = scritta.offsetWidth;
 
