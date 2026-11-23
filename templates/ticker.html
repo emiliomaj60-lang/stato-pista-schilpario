@@ -65,7 +65,7 @@ body{
 
     top:2px;
 
-    left:0;
+    left:100%;
 
     white-space:nowrap;
 
@@ -98,18 +98,16 @@ const scritta = document.getElementById("scritta");
 
 let pos = window.innerWidth;
 
-function anima(){
+function anima() {
 
-    pos -= 3;
+    pos = pos - 2;
 
-    scritta.style.transform =
-        `translateX(${pos}px)`;
+    scritta.style.left = pos + "px";
 
-    const larghezza = scritta.offsetWidth;
-
-    if(pos < -larghezza){
+    if (pos < -scritta.offsetWidth) {
 
         pos = window.innerWidth;
+
     }
 
     requestAnimationFrame(anima);
